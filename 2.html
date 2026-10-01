@@ -1,0 +1,890 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="format-detection" content="telephone=no">
+<style>
+:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html,body{margin:0}
+body{font:14px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif;background:#fafafa}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"><style>
+:root{
+  --brand:#0A8E97; --brand-deep:#066A72; --brand-soft:#BFE4E6;
+  --amber:#C07A21; --indigo:#4C68B0;
+  --ink:#0F1F21; --ink-2:#4F6568; --ink-3:#83989B;
+  --bg:#F8FCFC; --surface:#FFFFFF; --mist:#EBF5F5; --mist-2:#DCEEEE;
+  --line:#DCEAEA; --line-2:#C3DEDF;
+  --shadow:0 1px 2px rgba(10,60,64,.05), 0 10px 28px -18px rgba(10,60,64,.35);
+  --radius:14px;
+  --serif:"Gowun Batang","Nanum Myeongjo",Georgia,"Apple SD Gothic Neo",serif;
+  --sans:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --brand:#3FC8D1; --brand-deep:#79E0E6; --brand-soft:#0D3E43;
+    --amber:#E0A85C; --indigo:#8FA6E6;
+    --ink:#EAF6F6; --ink-2:#A3BCBE; --ink-3:#7E9497;
+    --bg:#0A1516; --surface:#111F21; --mist:#16292B; --mist-2:#1C3335;
+    --line:#263E41; --line-2:#335155;
+    --shadow:0 1px 2px rgba(0,0,0,.45), 0 12px 32px -20px rgba(0,0,0,.9);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --brand:#3FC8D1; --brand-deep:#79E0E6; --brand-soft:#0D3E43;
+  --amber:#E0A85C; --indigo:#8FA6E6;
+  --ink:#EAF6F6; --ink-2:#A3BCBE; --ink-3:#7E9497;
+  --bg:#0A1516; --surface:#111F21; --mist:#16292B; --mist-2:#1C3335;
+  --line:#263E41; --line-2:#335155;
+  --shadow:0 1px 2px rgba(0,0,0,.45), 0 12px 32px -20px rgba(0,0,0,.9);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+  font-size:15px;line-height:1.72;-webkit-text-size-adjust:100%}
+img{max-width:100%;display:block}
+a{color:var(--brand-deep)}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:700;text-wrap:balance;margin:0;letter-spacing:-.01em}
+.wrap{width:100%;max-width:1060px;margin:0 auto;padding-inline:20px}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+/* ── nav ── */
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:60;
+  background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line)}
+.topbar-in{display:flex;align-items:center;gap:14px;height:54px}
+.brandmark{display:flex;align-items:center;gap:9px;flex:none}
+.rnd-chip{font-family:var(--mono);font-weight:600;font-size:12px;letter-spacing:.06em;
+  background:var(--brand);color:#fff;border-radius:999px;padding:3px 10px}
+.brandmark b{font-family:var(--serif);font-size:15px;white-space:nowrap}
+.navscroll{flex:1;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.navscroll::-webkit-scrollbar{display:none}
+.navscroll ul{display:flex;gap:2px;list-style:none;margin:0;padding:0}
+.navscroll a{display:block;white-space:nowrap;padding:6px 10px;border-radius:8px;
+  font-size:13px;color:var(--ink-2);text-decoration:none}
+.navscroll a:hover{background:var(--mist);color:var(--brand-deep)}
+.navscroll a.on{color:var(--brand);font-weight:700}
+
+/* ── hero ── */
+.hero{position:relative;overflow:hidden;background:#06262A}
+.hero img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.62}
+.hero-grad{position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(4,26,29,.78) 0%,rgba(6,92,99,.52) 44%,rgba(6,106,114,.94) 100%)}
+.hero-in{position:relative;padding-block:56px 42px;color:#fff}
+.kicker{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+  color:#A9E6EA;margin-bottom:14px}
+.hero h1{font-size:clamp(27px,5.4vw,44px);line-height:1.3;color:#fff;margin-bottom:6px}
+.hero .sub{font-family:var(--serif);font-size:clamp(17px,3vw,22px);color:#D4F1F3}
+.hero-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.hero-meta span{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);
+  border-radius:999px;padding:5px 13px;font-size:13px;color:#fff}
+.hero-meta span .mono{font-weight:600}
+.hero-logos{display:flex;align-items:center;gap:20px;margin-top:26px;
+  padding-top:18px;border-top:1px solid rgba(255,255,255,.22)}
+.hero-logos img{height:22px;width:auto;opacity:.95}
+.siblings{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;font-size:12.5px;color:#A9E6EA}
+.siblings b{color:#fff}
+
+/* ── sections ── */
+section{scroll-margin-top:70px}
+.band{padding-block:52px}
+.band.alt{background:var(--mist)}
+.eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--brand);font-weight:600}
+.band h2{font-size:clamp(22px,3.6vw,29px);margin-top:8px}
+.lede{color:var(--ink-2);max-width:62ch;margin-top:10px}
+.hr{height:1px;background:var(--line);border:0;margin:26px 0}
+
+/* ── facts ── */
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;
+  background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin-top:26px}
+.facts div{background:var(--surface);padding:14px 16px}
+.facts dt{font-size:11.5px;color:var(--ink-3);letter-spacing:.04em}
+.facts dd{margin:3px 0 0;font-size:14px;font-weight:500}
+
+/* ── day tabs / timeline ── */
+.daytabs{display:flex;gap:6px;flex-wrap:wrap;margin-top:24px}
+.daytab{appearance:none;border:1px solid var(--line-2);background:var(--surface);color:var(--ink-2);
+  border-radius:999px;padding:8px 15px;font:inherit;font-size:13px;cursor:pointer;
+  display:flex;align-items:center;gap:8px}
+.daytab .n{font-family:var(--mono);font-weight:600;color:var(--brand)}
+.daytab[aria-selected="true"]{background:var(--brand);border-color:var(--brand);color:#fff}
+.daytab[aria-selected="true"] .n{color:#fff}
+.daypanel{margin-top:22px}
+.dayhead{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:baseline;
+  padding-bottom:14px;border-bottom:1px solid var(--line)}
+.dayhead h3{font-size:20px}
+.dayhead .route{font-size:13px;color:var(--ink-2)}
+.daytheme{font-family:var(--serif);font-size:14px;color:var(--brand);font-weight:700}
+.daytheme::before{content:"“"}
+.daytheme::after{content:"”"}
+.tl{list-style:none;margin:0;padding:18px 0 0}
+.tl li{position:relative;padding:0 0 20px 30px;border-left:2px solid var(--line-2);margin-left:6px}
+.tl li:last-child{border-left-color:transparent;padding-bottom:0}
+.tl li::before{content:"";position:absolute;left:-7px;top:7px;width:12px;height:12px;border-radius:50%;
+  background:var(--surface);border:2px solid var(--line-2)}
+.tl li.flight::before{background:var(--brand);border-color:var(--brand)}
+.tl li.official::before{background:var(--amber);border-color:var(--amber)}
+.tl li.visit::before{background:var(--indigo);border-color:var(--indigo)}
+.tl li.rest::before{background:var(--brand);border-color:var(--brand);opacity:.55}
+.tl .t{font-family:var(--mono);font-size:12.5px;font-weight:600;color:var(--brand);
+  display:block;margin-bottom:2px}
+.tl .ttl{font-weight:500}
+.tl .d{font-size:13px;color:var(--ink-2);margin-top:2px}
+.tag{display:inline-block;font-size:11px;letter-spacing:.03em;border-radius:5px;
+  padding:1px 7px;margin-right:6px;vertical-align:2px}
+.tag.official{background:color-mix(in srgb,var(--amber) 16%,transparent);color:var(--amber)}
+.tag.visit{background:color-mix(in srgb,var(--indigo) 16%,transparent);color:var(--indigo)}
+.tag.rest{background:color-mix(in srgb,var(--brand) 14%,transparent);color:var(--brand-deep)}
+
+/* ── tables ── */
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);margin-top:22px}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:13.5px}
+th,td{padding:10px 13px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{background:var(--mist-2);font-size:12px;letter-spacing:.04em;color:var(--ink-2);
+  font-weight:700;white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+td.num,th.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* ── official visit ── */
+.visitcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  overflow:hidden;box-shadow:var(--shadow);margin-top:26px}
+.visitcard > img{width:100%;height:clamp(150px,26vw,230px);object-fit:cover}
+.visitbody{padding:22px}
+.visitbody .ord{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;color:var(--brand);font-weight:600}
+.visitbody h3{font-size:19px;margin-top:6px}
+.visitbody .en{font-size:12.5px;color:var(--ink-3);margin-top:2px}
+.visitbody p{margin:14px 0 0;color:var(--ink-2);font-size:14px;line-height:1.85}
+.shots{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.shots img{aspect-ratio:16/10;object-fit:cover;border-radius:9px;max-width:100%}
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+.pills span{font-size:12px;border:1px solid var(--line-2);color:var(--ink-2);
+  border-radius:999px;padding:3px 10px;background:var(--bg)}
+
+/* ── spot grid ── */
+.grid{display:grid;gap:16px;margin-top:26px}
+.g4{grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(310px,1fr))}
+.spot{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.spot img{aspect-ratio:4/3;object-fit:cover;width:100%}
+.spot .c{padding:13px 14px 15px}
+.spot .day{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--brand);font-weight:600}
+.spot h4{font-size:15px;margin-top:4px}
+.spot p{margin:6px 0 0;font-size:12.5px;line-height:1.65;color:var(--ink-2)}
+
+/* ── hotel ── */
+.hotel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.hotel > img{width:100%;aspect-ratio:16/10;object-fit:cover}
+.hotel .c{padding:18px}
+.hotel .n{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;color:var(--brand);font-weight:600}
+.hotel h3{font-size:18px;margin-top:5px}
+.hotel .en{font-size:12.5px;color:var(--ink-3)}
+.hotel .thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:14px}
+.hotel .thumbs img{aspect-ratio:1;object-fit:cover;border-radius:7px}
+.kv{margin:16px 0 0;font-size:13px}
+.kv div{display:flex;gap:12px;padding:7px 0;border-top:1px solid var(--line)}
+.kv dt{flex:none;width:52px;color:var(--ink-3);font-size:12px;padding-top:1px}
+.kv dd{margin:0;color:var(--ink-2)}
+
+/* ── meals ── */
+.mealday{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px}
+.mealday > .h{display:flex;align-items:baseline;gap:10px;margin-bottom:13px}
+.mealday .dn{font-family:var(--mono);font-size:12px;font-weight:600;color:#fff;background:var(--brand);
+  border-radius:6px;padding:2px 8px}
+.mealday .dd{font-size:12.5px;color:var(--ink-3)}
+.mealrow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.meal img{aspect-ratio:4/3;object-fit:cover;border-radius:9px;width:100%}
+.meal.wide{grid-column:1/-1}
+.meal .duo{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.meal .lbl{font-size:11px;color:var(--brand);font-weight:700;margin-top:8px;letter-spacing:.06em}
+.meal .nm{font-size:14px;font-weight:500;margin-top:1px}
+.meal .ds{font-size:12px;color:var(--ink-2);line-height:1.55;margin-top:2px}
+
+/* ── region ── */
+.region{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-top:26px}
+.region figure{margin:0}
+.region img{border-radius:var(--radius);aspect-ratio:16/10;object-fit:cover;width:100%}
+.region h3{font-size:16px;margin-top:0;display:inline-block;
+  border-bottom:2px solid var(--brand);padding-bottom:5px}
+.region p{font-size:13.5px;line-height:1.85;color:var(--ink-2);margin:12px 0 0}
+
+/* ── roster ── */
+.rosterhead{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:10px;
+  padding:10px 16px;min-width:96px}
+.stat b{display:block;font-family:var(--mono);font-size:21px;color:var(--brand);line-height:1.2}
+.stat span{font-size:11.5px;color:var(--ink-3)}
+.safety-note{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--brand);
+  border-radius:0 var(--radius) var(--radius) 0;padding:16px 18px;margin-top:24px;font-size:13.5px;
+  line-height:1.85;color:var(--ink-2)}
+.safety-note b{color:var(--ink);font-family:var(--serif);font-size:15px;display:block;margin-bottom:6px}
+
+/* ── contacts ── */
+.contacts{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:12px;margin-top:22px}
+.ct{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:13px 15px;
+  display:flex;align-items:flex-start;gap:12px}
+.ct .meta{flex:1;min-width:0}
+.ct .grp{font-size:11px;color:var(--brand);font-weight:700;letter-spacing:.06em}
+.ct .nm{font-size:13.5px;font-weight:500;margin-top:2px;word-break:keep-all}
+.ct .no{font-family:var(--mono);font-size:14px;font-weight:500;margin-top:4px;
+  user-select:all;-webkit-user-select:all}
+.ct .sub{font-size:11.5px;color:var(--ink-3);margin-top:3px}
+.copy{appearance:none;border:1px solid var(--line-2);background:var(--bg);color:var(--ink-2);
+  border-radius:7px;padding:5px 9px;font:inherit;font-size:11.5px;cursor:pointer;flex:none}
+.copy:hover{border-color:var(--brand);color:var(--brand)}
+.copy.ok{background:var(--brand);border-color:var(--brand);color:#fff}
+
+/* ── accordion-ish safety cases ── */
+.cases{margin-top:24px;border:1px solid var(--line);border-radius:var(--radius);
+  overflow:hidden;background:var(--surface)}
+.cases details{border-bottom:1px solid var(--line)}
+.cases details:last-child{border-bottom:0}
+.cases summary{cursor:pointer;padding:14px 18px;font-weight:500;font-size:14.5px;
+  list-style:none;display:flex;align-items:center;gap:10px}
+.cases summary::-webkit-details-marker{display:none}
+.cases summary::before{content:"+";font-family:var(--mono);color:var(--brand);font-weight:600;flex:none}
+.cases details[open] summary::before{content:"–"}
+.cases ul{margin:0;padding:0 18px 16px 44px;color:var(--ink-2);font-size:13.5px;line-height:1.8}
+.cases li{margin-bottom:7px}
+
+/* ── phrases ── */
+.phrasegrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:24px}
+.pcat h4{font-size:14px;color:var(--brand);border-bottom:1px solid var(--line-2);padding-bottom:7px}
+.pcat ul{list-style:none;margin:10px 0 0;padding:0}
+.pcat li{padding:7px 0;border-bottom:1px dashed var(--line)}
+.pcat li:last-child{border-bottom:0}
+.pcat .ko{font-size:13.5px}
+
+
+/* ── checklist ── */
+.checkgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:24px;align-items:start}
+.ck{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:15px 17px}
+.ck h4{font-size:14px;margin-bottom:9px}
+.ck label{display:flex;gap:9px;align-items:flex-start;padding:5px 0;font-size:13px;
+  color:var(--ink-2);cursor:pointer;line-height:1.6}
+.ck input{margin:5px 0 0;accent-color:var(--brand);flex:none;width:15px;height:15px}
+.ck input:checked + span{color:var(--ink-3);text-decoration:line-through}
+.memo{margin-top:20px}
+.memo label{display:block;font-size:13px;color:var(--ink-2);margin-bottom:7px}
+.memo textarea{width:100%;min-height:110px;resize:vertical;border:1px solid var(--line-2);
+  border-radius:12px;padding:13px 15px;font:inherit;font-size:13.5px;background:var(--surface);
+  color:var(--ink);line-height:1.7}
+.memo textarea:focus{outline:2px solid var(--brand);outline-offset:1px;border-color:transparent}
+.savenote{font-size:11.5px;color:var(--ink-3);margin-top:7px}
+
+/* ── footer ── */
+footer{background:var(--brand-deep);color:#fff;padding-block:34px;margin-top:8px}
+footer .f{display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between}
+footer img{height:22px;width:auto}
+footer .logos{display:flex;gap:20px;align-items:center}
+footer p{margin:0;font-size:12.5px;color:#BCE6E9;line-height:1.7}
+
+
+/* ── shared headings / lists ── */
+.subh{font-size:17px;margin-top:0}
+ul.plain,ol.plain-num{padding-left:18px;margin:0}
+ul.plain li,ol.plain-num li{margin-bottom:6px;font-size:13.5px;line-height:1.75;color:var(--ink-2)}
+.twocol{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px;margin-top:22px;align-items:start}
+
+/* ── overview: purpose / meet ── */
+.purpose{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px}
+.purpose h3{font-size:16px;color:var(--brand-deep)}
+.purpose p{margin:10px 0 0;font-size:13.5px;line-height:1.8;color:var(--ink-2)}
+.purpose ul{margin:10px 0 0;padding-left:18px}
+.purpose li{font-size:13.5px;line-height:1.75;color:var(--ink-2);margin-bottom:6px}
+.meetbox{margin-top:22px;border:1px solid var(--brand);border-radius:var(--radius);
+  background:var(--surface);overflow:hidden}
+.meethead{background:var(--brand);color:#fff;font-size:12.5px;font-weight:700;
+  letter-spacing:.06em;padding:8px 18px}
+.meetgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;padding:16px 18px 4px}
+.meetgrid span{display:block;font-size:11.5px;color:var(--ink-3)}
+.meetgrid b{font-size:14.5px;font-weight:500;line-height:1.55}
+.meetbox p{margin:0;padding:6px 18px 16px;font-size:12.5px;color:var(--ink-2)}
+
+/* ── city cards ── */
+.city{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.city img{width:100%;aspect-ratio:16/9;object-fit:cover}
+.city .c{padding:16px 18px}
+.tag-city{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--brand);font-weight:600}
+.city h4{font-size:17px;margin-top:4px}
+.city h4 span{font-family:var(--mono);font-size:11.5px;color:var(--ink-3);font-weight:400;margin-left:5px}
+.city p{margin:10px 0 0;font-size:13px;line-height:1.8;color:var(--ink-2)}
+
+/* ── food ── */
+.foodgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-top:18px;align-items:start}
+.food{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:15px 17px;
+  border-top:3px solid var(--amber)}
+.food h4{font-size:15px}
+.food p{margin:7px 0 0;font-size:12.5px;line-height:1.72;color:var(--ink-2)}
+
+/* ── steps ── */
+.steps{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px}
+.steps ol{list-style:none;counter-reset:st;margin:14px 0 0;padding:0}
+.steps li{counter-increment:st;position:relative;padding:0 0 15px 34px;
+  border-left:2px solid var(--line-2);margin-left:10px}
+.steps li:last-child{border-left-color:transparent;padding-bottom:0}
+.steps li::before{content:counter(st);position:absolute;left:-12px;top:0;width:22px;height:22px;
+  border-radius:50%;background:var(--brand);color:#fff;font-family:var(--mono);font-size:11px;
+  font-weight:600;display:flex;align-items:center;justify-content:center}
+.steps li b{display:block;font-size:14px;font-weight:500;line-height:1.5}
+.steps li span{display:block;font-size:12.5px;color:var(--ink-2);margin-top:3px;line-height:1.65}
+
+/* ── callout ── */
+.callout{margin-top:22px;background:var(--surface);border:1px solid var(--line);
+  border-left:3px solid var(--brand);border-radius:0 var(--radius) var(--radius) 0;padding:18px 20px}
+.callout > b{font-family:var(--serif);font-size:16px;display:block;margin-bottom:10px}
+.callout p{margin:10px 0 0;font-size:13px;color:var(--ink-2);line-height:1.75}
+.callout.money .twocol{margin-top:4px}
+.mlabel{font-size:11.5px;color:var(--ink-3)}
+.mval{font-size:14px;font-weight:500;margin-top:2px}
+.qk{white-space:nowrap;color:var(--brand);font-size:12px;font-weight:700}
+
+/* ── definition list in cards ── */
+.deflist{margin:10px 0 0}
+.deflist div{padding:8px 0;border-top:1px solid var(--line)}
+.deflist dt{font-size:12.5px;font-weight:700;color:var(--ink)}
+.deflist dd{margin:3px 0 0;font-size:12.5px;color:var(--ink-2);line-height:1.7}
+.ck h4.ok{color:var(--brand-deep)}
+.ck h4.no{color:var(--amber)}
+
+/* ── report flow ── */
+.flow{margin-top:20px;background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--radius);padding:16px 18px}
+.flowlabel{font-size:12px;letter-spacing:.05em;color:var(--ink-3);margin-bottom:10px}
+.flow ol{list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0;padding:0}
+.flow li{font-size:13px;background:var(--mist);border:1px solid var(--line-2);
+  border-radius:8px;padding:6px 12px}
+.flow li:not(:last-child)::after{content:"→";margin-left:10px;color:var(--brand);font-weight:600}
+
+/* ── checklist item notes ── */
+.ck label span b{display:block;font-weight:500;color:var(--ink);font-size:13px}
+.ck label span i{display:block;font-style:normal;font-size:11.5px;color:var(--ink-3);
+  line-height:1.55;margin-top:1px}
+.ck input:checked + span b,.ck input:checked + span i{color:var(--ink-3)}
+.ck input:checked + span b{text-decoration:line-through}
+
+/* ── phrases: 3 lines ── */
+.pcat .rm{font-size:12px;color:var(--ink-3);margin-top:1px}
+.pcat .jp{font-size:12.5px;color:var(--amber);font-weight:500;margin-top:2px}
+
+:focus-visible{outline:2px solid var(--brand);outline-offset:2px;border-radius:4px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media (max-width:640px){
+  .band{padding-block:40px}
+  .mealrow{grid-template-columns:1fr}
+  .shots{grid-template-columns:1fr}
+  .hotel .thumbs{grid-template-columns:repeat(2,1fr)}
+}
+@media print{
+  @page{size:A4;margin:12mm}
+  .topbar,.hero img.bg,.hero-grad,.daytabs,.copy,.memo textarea,.print-hide{display:none!important}
+  body{background:#fff;color:#000;font-size:10pt}
+  .band{padding-block:14px;break-inside:auto}
+  .daypanel[hidden]{display:block!important}
+  #printplan{break-before:page}
+}
+</style>
+<title>홋카이도 연수 안내 · 2차</title>
+</head>
+<body>
+
+
+<div class="topbar print-hide"><div class="wrap topbar-in">
+  <div class="brandmark"><span class="rnd-chip">2차</span><b>홋카이도 연수</b></div>
+  <div class="navscroll"><ul><li><a href="#overview">개요</a></li><li><a href="#schedule">일정</a></li><li><a href="#official">공식방문</a></li><li><a href="#spots">인프라탐방</a></li><li><a href="#hotel">숙소</a></li><li><a href="#meal">식사</a></li><li><a href="#region">지역정보</a></li><li><a href="#roster">명단</a></li><li><a href="#safety">안전</a></li><li><a href="#depart">출입국</a></li><li><a href="#life">생활정보</a></li><li><a href="#check">준비물</a></li><li><a href="#printplan">일정표</a></li></ul></div>
+</div></div>
+<div class="hero">
+  <img class="bg" src="img/region-lake.jpg" alt="홋카이도 가을 호수 전경">
+  <div class="hero-grad"></div>
+  <div class="wrap hero-in">
+    <div class="kicker">Incheon International Airport Corporation · 2026</div>
+    <h1>2026년 인천국제공항공사<br>생애주기 교육(이음·채움) 국외연수</h1>
+    <p class="sub">일본 홋카이도 3박 4일 · 실행과정</p>
+    <div class="hero-meta">
+      <span class="mono">2026. 10. 20.(화) – 2026. 10. 23.(금)</span>
+      <span>참가 <b class="mono">11</b>명 · 인솔 <b class="mono">3</b>명</span>
+      <span>KE 765 / KE 766</span>
+      <span>삿포로 프린스 호텔 · 조잔케이 뷰 호텔</span>
+    </div>
+    <div class="siblings"><span>다른 차수 &nbsp;1차 10. 13.(화) – 10. 16.(금) · 3차 10. 27.(화) – 10. 30.(금)</span></div>
+    <div class="hero-logos">
+      <img src="img/logo-kpc.png" alt="한국생산성본부">
+      <img src="img/logo-iia.png" alt="인천국제공항공사">
+    </div>
+  </div>
+</div>
+<section id="overview" class="band"><div class="wrap">
+  <div class="eyebrow">Overview</div>
+  <h2>한눈에 보기</h2>
+  <p class="lede">공식 방문 2개 기관과 인프라 탐방으로 구성된 3박 4일 일정입니다.
+  공항 집결부터 해산까지 전 구간 전용차량으로 이동하며, 삿포로 시내 2박과 조잔케이 온천 1박으로 숙소가 나뉩니다.</p>
+  <dl class="facts"><div><dt>시차</dt><dd>한국과 동일 (0시간)</dd></div><div><dt>통화</dt><dd>엔(JPY) · 100엔 ≒ 약 900원 내외</dd></div><div><dt>전압</dt><dd>100V · A타입 2핀 (어댑터 필요)</dd></div><div><dt>언어</dt><dd>일본어 (관광지 영어 병기)</dd></div><div><dt>10월 하순 기온</dt><dd>낮 13~16℃ · 아침 4~7℃</dd></div><div><dt>비행시간</dt><dd>인천–치토세 약 2시간 50분</dd></div></dl>
+
+  <div class="twocol">
+    <div class="purpose">
+      <h3>연수 목적</h3>
+      <p>연수 전·중·후의 체계적인 프로그램을 통한 글로벌 역량 강화 및 진취적이고 혁신적인 도전목표 설정</p>
+    </div>
+    <div class="purpose">
+      <h3>주요 내용</h3>
+      <ul><li>인천국제공항공사 글로벌 실천전략을 통한 글로벌 선진 공항으로의 도약</li><li>국외 벤치마킹 연수를 통한 전직 등에 대한 통찰력과 실행력 강화</li><li>일본의 자원순환·제조 인프라 현장 시찰을 통한 환경·품질 관리 운영 노하우 습득</li><li>일본에서 배우고 체험할 수 있는 문화탐방을 통한 역량 증대 및 실천계획 수립</li></ul>
+    </div>
+  </div>
+
+  <h3 class="subh">항공 일정</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>구분</th><th>비행편</th><th>여정</th><th class="num">출발</th><th class="num">도착</th><th class="num">비행시간</th></tr></thead>
+    <tbody><tr><td><b>출국</b></td><td>대한항공 KE765</td><td>인천 → 치토세</td><td class="num">10:35</td><td class="num">13:25</td><td class="num">약 2시간 50분</td></tr><tr><td><b>귀국</b></td><td>대한항공 KE766</td><td>치토세 → 인천</td><td class="num">14:50</td><td class="num">17:55</td><td class="num">약 3시간 5분</td></tr></tbody>
+  </table></div>
+
+  <div class="meetbox">
+    <div class="meethead">출국 집결</div>
+    <div class="meetgrid">
+      <div><span>일시</span><b>2026. 10. 20.(화) · 출발 약 2시간 전</b></div>
+      <div><span>장소</span><b>인천국제공항 제2여객터미널 3층 B카운터 앞 (대한항공)</b></div>
+    </div>
+    <p>정확한 집결 시각은 출발 전 별도 공지합니다. 제1여객터미널이 아니니 주의해 주세요.</p>
+  </div>
+</div></section>
+<section id="schedule" class="band alt"><div class="wrap">
+  <div class="eyebrow">Itinerary</div>
+  <h2>연수 일정</h2>
+  <p class="lede">일차를 눌러 세부 일정을 확인하세요. 현지 사정에 따라 순서가 조정될 수 있습니다.</p>
+  <div class="daytabs" role="tablist" aria-label="일차 선택"><button class="daytab" role="tab" aria-selected="true" aria-controls="dp1" id="dt1" data-day="1"><span class="n">1일차</span><span>10. 20.(화)</span></button><button class="daytab" role="tab" aria-selected="false" aria-controls="dp2" id="dt2" data-day="2"><span class="n">2일차</span><span>10. 21.(수)</span></button><button class="daytab" role="tab" aria-selected="false" aria-controls="dp3" id="dt3" data-day="3"><span class="n">3일차</span><span>10. 22.(목)</span></button><button class="daytab" role="tab" aria-selected="false" aria-controls="dp4" id="dt4" data-day="4"><span class="n">4일차</span><span>10. 23.(금)</span></button></div>
+  
+<div class="daypanel" id="dp1" role="tabpanel" aria-labelledby="dt1" >
+  <div class="dayhead">
+    <h3>1일차 · 10. 20.(화)</h3>
+    <div class="daytheme">퇴직 마인드셋</div>
+    <div class="route">인천 → 신 치토세 → 삿포로 &nbsp;|&nbsp; 숙박 삿포로 프린스 호텔</div>
+  </div>
+  <ol class="tl"><li class=""><span class="ttl">인천국제공항 제2여객터미널 집결</span><div class="d">3층 B카운터 앞 (대한항공)</div></li><li class="flight"><span class="t">10:35</span><span class="ttl">ICN 인천국제공항 출발</span><div class="d">대한항공 KE 765 · 약 2시간 50분 소요</div></li><li class="flight"><span class="t">14:00</span><span class="ttl">신 치토세 국제공항(CTS) 도착 및 입국수속</span><div class="d">전용차량으로 이동</div></li><li class="visit"><span class="t">15:00</span><span class="ttl"><span class="tag visit">인프라 탐방</span>인프라 탐방 — 시로이 고이비토 파크</span><div class="d">홋카이도 대표 제과 브랜드의 제조 공정과 테마 정원을 결합한 체험형 복합문화시설</div></li><li class="meal"><span class="t">18:00</span><span class="ttl">석식</span><div class="d">샤브샤브</div></li><li class=""><span class="ttl">호텔 투숙 및 휴식</span><div class="d">삿포로 프린스 호텔</div></li></ol>
+</div>
+<div class="daypanel" id="dp2" role="tabpanel" aria-labelledby="dt2" hidden>
+  <div class="dayhead">
+    <h3>2일차 · 10. 21.(수)</h3>
+    <div class="daytheme">문화, 새로운 길을 열다</div>
+    <div class="route">삿포로 → 도마코마이 → 노보리베쓰 → 삿포로 &nbsp;|&nbsp; 숙박 삿포로 프린스 호텔</div>
+  </div>
+  <ol class="tl"><li class="meal"><span class="t">07:30</span><span class="ttl">조식</span><div class="d">호텔 뷔페</div></li><li class="official"><span class="t">09:00</span><span class="ttl"><span class="tag official">공식 방문</span>공식 방문 ① 주식회사 홋카이도 에코 리사이클 시스템즈 공장</span><div class="d">자원순환 체계를 견인하는 선진 친환경 플랜트 방문</div></li><li class="meal"><span class="t">12:00</span><span class="ttl">중식</span><div class="d">홋카이도 닭찜요리</div></li><li class="visit"><span class="t">13:00</span><span class="ttl"><span class="tag visit">인프라 탐방</span>인프라 탐방 — 노보리베쓰 다테 지다이무라</span><div class="d">에도 시대의 무가 저택과 거리 풍경, 닌자 문화를 정밀하게 재현한 역사 테마파크</div></li><li class="meal"><span class="t">18:00</span><span class="ttl">석식</span><div class="d">야끼니꾸 정식</div></li><li class=""><span class="ttl">호텔 투숙 및 휴식</span><div class="d">삿포로 프린스 호텔</div></li></ol>
+</div>
+<div class="daypanel" id="dp3" role="tabpanel" aria-labelledby="dt3" hidden>
+  <div class="dayhead">
+    <h3>3일차 · 10. 22.(목)</h3>
+    <div class="daytheme">나눔, 함께 나누는 미래</div>
+    <div class="route">삿포로 → 치토세 → 오타루 → 조잔케이 &nbsp;|&nbsp; 숙박 조잔케이 뷰 호텔</div>
+  </div>
+  <ol class="tl"><li class="meal"><span class="t">07:30</span><span class="ttl">조식</span><div class="d">호텔 뷔페</div></li><li class="official"><span class="t">09:00</span><span class="ttl"><span class="tag official">공식 방문</span>공식 방문 ② 기린맥주 주식회사 홋카이도 치토세 공장</span><div class="d">글로벌 제조 인프라의 자동화 기술과 친환경 품질 관리 역량을 현장에서 직접 체감</div></li><li class="meal"><span class="t">12:00</span><span class="ttl">중식</span><div class="d">해산물 정식</div></li><li class="visit"><span class="t">13:00</span><span class="ttl"><span class="tag visit">인프라 탐방</span>인프라 탐방 — 오타루 운하, 오르골당, 사카이마치도리 상점가 등</span><div class="d">걷고 생각하며 떠올리는 우리의 미래</div></li><li class="rest"><span class="t">16:00</span><span class="ttl"><span class="tag rest">휴식</span>온천욕 체험 — 조잔케이 뷰 호텔 온천</span><div class="d">쉼, 건강한 내일을 준비하다</div></li><li class="meal"><span class="t">18:00</span><span class="ttl">석식</span><div class="d">조잔케이 뷰 호텔 뷔페</div></li><li class=""><span class="ttl">호텔 투숙 및 휴식</span><div class="d">조잔케이 뷰 호텔</div></li></ol>
+</div>
+<div class="daypanel" id="dp4" role="tabpanel" aria-labelledby="dt4" hidden>
+  <div class="dayhead">
+    <h3>4일차 · 10. 23.(금)</h3>
+    <div class="daytheme">귀국</div>
+    <div class="route">조잔케이 → 신 치토세 → 인천 &nbsp;|&nbsp; 숙박 —</div>
+  </div>
+  <ol class="tl"><li class="meal"><span class="t">07:30</span><span class="ttl">조식</span><div class="d">호텔 뷔페</div></li><li class=""><span class="t">09:00</span><span class="ttl">휴식(온천) 및 체크아웃</span></li><li class=""><span class="t">10:00</span><span class="ttl">공항 이동 및 구경</span></li><li class="meal"><span class="t">12:00</span><span class="ttl">중식</span><div class="d">공항 자유식 · 1인당 2,000엔 제공</div></li><li class="flight"><span class="t">14:50</span><span class="ttl">신 치토세 국제공항(CTS) 출발</span><div class="d">대한항공 KE 766 · 약 3시간 5분 소요</div></li><li class="flight"><span class="t">17:55</span><span class="ttl">ICN 인천국제공항 도착 후 해산</span></li></ol>
+</div>
+</div></section>
+<section id="official" class="band"><div class="wrap">
+  <div class="eyebrow">Official Visit</div>
+  <h2>공식 방문</h2>
+  <p class="lede">자원순환 플랜트와 식음료 제조 거점 두 곳을 시찰합니다. 현장 촬영은 기관 안내에 따라 주세요.</p>
+  
+<article class="visitcard">
+  <img src="img/eco-sign.jpg" alt="주식회사 홋카이도 에코 리사이클 시스템즈 공장 전경" loading="lazy">
+  <div class="visitbody">
+    <div class="ord">공식 방문 ① · 2일차 · 도마코마이시</div>
+    <h3>주식회사 홋카이도 에코 리사이클 시스템즈 공장</h3>
+    <div class="en">Hokkaido Eco Recycle Systems Co., Ltd.</div>
+    <div class="pills"><span>폐가전 4대 품목</span><span>프레온 냉매 회수</span><span>자동화 선별 라인</span><span>재생 플라스틱 펠릿</span></div>
+    <p>일본의 ‘특정 가정용 기기 재활용법(가전리사이클법)’에 기반하여 설립된 주식회사 홋카이도 에코 리사이클 시스템즈는 도오(道央) 지역의 자원순환 체계를 견인하는 선진 친환경 플랜트입니다. 주요 가전 제조사들과 환경 전문 기업이 협력하여 구축한 이곳에서는 폐냉장고, 세탁기, 에어컨, 텔레비전 등 4대 폐가전을 대상으로 고효율 리사이클 공정을 가동하고 있습니다. 이번 공식 시찰에서는 온실가스 원인 물질인 프레온 냉매 가스를 안전하게 회수하고 기판과 모터 등 주요 부품을 선별 분리하는 정밀 수작업 해체 라인부터 참관합니다. 이어지는 공정에서는 대형 파쇄 설비를 거친 파쇄물이 자력 선별기, 비철금속 선별기, 풍력 및 비중 선별기를 통과하며 철, 구리, 알루미늄뿐 아니라 고순도 복합 플라스틱으로 정밀하게 분류되는 첨단 자동화 선별 라인을 직접 확인하게 됩니다. 최종적으로 자원화된 금속 원료와 재생 플라스틱 펠릿 샘플을 살펴보고, 현장 전문가와의 질의응답을 통해 폐기물의 고부가가치 자원화 기술과 친환경 안전 관리 운영 노하우를 폭넓게 파악할 수 있는 유익한 시간이 될 것입니다.</p>
+    <div class="shots"><img src="img/eco-tour.jpg" alt="주식회사 홋카이도 에코 리사이클 시스템즈 공장 현장 사진" loading="lazy"><img src="img/eco-line.jpg" alt="주식회사 홋카이도 에코 리사이클 시스템즈 공장 현장 사진" loading="lazy"></div>
+  </div>
+</article>
+<article class="visitcard">
+  <img src="img/kirin-plant.jpg" alt="기린맥주 주식회사 홋카이도 치토세 공장 전경" loading="lazy">
+  <div class="visitbody">
+    <div class="ord">공식 방문 ② · 3일차 · 치토세시</div>
+    <h3>기린맥주 주식회사 홋카이도 치토세 공장</h3>
+    <div class="en">Kirin Brewery Company, Limited Hokkaido Chitose Plant</div>
+    <div class="pills"><span>시코쓰코 수계 천연수</span><span>이치방 시보리 공법</span><span>무인 패키징 라인</span><span>부산물 100% 재자원화</span></div>
+    <p>시코쓰토야 국립공원에 위치한 시코쓰코(支笏湖) 수계의 청정한 천연 지하수를 원수로 사용하는 기린맥주 주식회사 홋카이도 치토세 공장은 자연 친화적 입지와 첨단 제조 기술이 집약된 대표적인 식음료 생산 거점입니다. 공식 견학 프로그램은 맥주의 풍미를 결정짓는 핵심 주원료인 맥아를 직접 맛보고 엄선된 홉의 풍부한 아로마 향을 오감으로 체험하는 코스로 시작됩니다. 이어 대형 담금 솥 설비를 둘러보며 기린맥주 고유의 공법인 ‘첫 번째 맥즙(이치방 시보리)’과 일반 양조에 쓰이는 ‘두 번째 맥즙’을 비교 시음하여 당도와 풍미의 차이를 직접 비교해보는 양조 과학의 원리를 살펴봅니다. 이후 거대한 옥외 발효·숙성 탱크 단지를 거쳐, 캔과 병에 맥주를 정밀 고속 주입하고 박스 단위로 포장하여 출하하기까지 전 과정을 무인 컴퓨터로 제어하는 대규모 자동화 패키징 물류 라인을 관람 통로에서 시찰합니다. 맥주 부산물의 100% 재자원화와 철저한 탄소 배출 절감 시스템을 둘러본 뒤, 당일 공장에서 갓 생산된 신선한 맥주(또는 무알코올 음료)를 테이스팅하며 글로벌 제조 인프라의 자동화 기술과 친환경 품질 관리 역량을 현장에서 직접 체감할 수 있습니다.</p>
+    <div class="shots"><img src="img/kirin-beer.jpg" alt="기린맥주 주식회사 홋카이도 치토세 공장 현장 사진" loading="lazy"><img src="img/kirin-line.jpg" alt="기린맥주 주식회사 홋카이도 치토세 공장 현장 사진" loading="lazy"></div>
+  </div>
+</article>
+</div></section>
+<section id="spots" class="band alt"><div class="wrap">
+  <div class="eyebrow">Field Visit</div>
+  <h2>인프라 탐방</h2>
+  <p class="lede">개척기 근대 건축과 지역 산업이 남긴 시설을 중심으로 둘러봅니다.</p>
+  <div class="grid g4">
+<article class="spot"><img src="img/spot-shiroi.jpg" alt="시로이 고이비토 파크" loading="lazy">
+  <div class="c"><div class="day">1일차</div><h4>시로이 고이비토 파크</h4><p>홋카이도 대표 제과 브랜드의 제조 공정과 테마 정원을 결합한 체험형 복합 문화 시설</p></div></article>
+<article class="spot"><img src="img/spot-noboribetsu.jpg" alt="노보리베쓰 다테 지다이무라" loading="lazy">
+  <div class="c"><div class="day">2일차</div><h4>노보리베쓰 다테 지다이무라</h4><p>에도 시대의 무가 저택과 거리 풍경, 닌자 문화를 정밀하게 재현한 역사 테마파크</p></div></article>
+<article class="spot"><img src="img/spot-orgel.jpg" alt="오타루 오르골당 본관" loading="lazy">
+  <div class="c"><div class="day">3일차</div><h4>오타루 오르골당 본관</h4><p>1912년에 건립된 붉은 벽돌 목조 건축물에 전 세계 오르골 수만 점을 갖춘 전시·판매장</p></div></article>
+<article class="spot"><img src="img/spot-canal.jpg" alt="오타루 운하" loading="lazy">
+  <div class="c"><div class="day">3일차</div><h4>오타루 운하</h4><p>20세기 초 물류용 수로를 철거하지 않고 수변 산책로와 석조 창고군으로 재생한 대표 수변 명소</p></div></article>
+<article class="spot"><img src="img/spot-sakaimachi.jpg" alt="오타루 사카이마치도리 상점가" loading="lazy">
+  <div class="c"><div class="day">3일차</div><h4>오타루 사카이마치도리 상점가</h4><p>근대 은행과 석조 창고를 개조한 유리 공예점, 공방, 디저트 매장이 밀집한 역사 보존 상권</p></div></article>
+<article class="spot"><img src="img/spot-akarenga.jpg" alt="홋카이도청 구 본청사" loading="lazy">
+  <div class="c"><div class="day">삿포로 시내</div><h4>홋카이도청 구 본청사</h4><p>1888년 미국식 네오바로크 양식으로 완공된 붉은 벽돌 외관의 홋카이도 개척 행정 상징 건축물</p></div></article>
+<article class="spot"><img src="img/spot-odori.jpg" alt="오도리 공원" loading="lazy">
+  <div class="c"><div class="day">삿포로 시내</div><h4>오도리 공원</h4><p>삿포로 중심부를 동서로 가로지르며 분수와 녹지, 도심 조경이 정비된 대규모 공공 공원</p></div></article>
+<article class="spot"><img src="img/spot-clock.jpg" alt="삿포로시 시계탑" loading="lazy">
+  <div class="c"><div class="day">삿포로 시내</div><h4>삿포로시 시계탑</h4><p>1878년 건립되어 현재까지 종소리를 울리는 현존 최고(最古)의 목조 서양식 탑 시계 건축물</p></div></article></div>
+</div></section>
+<section id="hotel" class="band"><div class="wrap">
+  <div class="eyebrow">Accommodation</div>
+  <h2>숙소 정보</h2>
+  <p class="lede">두 곳 모두 온천과 대욕장을 갖추고 있습니다. 객실 배정은 현지 체크인 시 안내합니다.</p>
+  <div class="grid g2">
+<article class="hotel">
+  <img src="img/prince-1.jpg" alt="삿포로 프린스 호텔 전경" loading="lazy">
+  <div class="c">
+    <div class="n">1·2일차 · 2박</div>
+    <h3>삿포로 프린스 호텔</h3>
+    <div class="en">Sapporo Prince Hotel</div>
+    <div class="thumbs"><img src="img/prince-room.jpg" alt="삿포로 프린스 호텔 내부" loading="lazy"><img src="img/prince-2.jpg" alt="삿포로 프린스 호텔 내부" loading="lazy"><img src="img/prince-lounge.jpg" alt="삿포로 프린스 호텔 내부" loading="lazy"><img src="img/prince-night.jpg" alt="삿포로 프린스 호텔 내부" loading="lazy"></div>
+    <dl class="kv">
+      <div><dt>주소</dt><dd>11 Chome Minami 2 Jonishi, Chuo Ward, Sapporo, Hokkaido 060-8615</dd></div>
+      <div><dt>전화</dt><dd class="mono">+81 11-241-1111</dd></div>
+      <div><dt>시설</dt><dd>WI-FI · 공중목욕탕 · 온천 · 노천탕 · 셀프 세탁실 · 하우스키핑 · 레스토랑 · 바</dd></div>
+    </dl>
+  </div>
+</article>
+<article class="hotel">
+  <img src="img/jozankei-1.jpg" alt="조잔케이 뷰 호텔 전경" loading="lazy">
+  <div class="c">
+    <div class="n">3일차 · 1박</div>
+    <h3>조잔케이 뷰 호텔</h3>
+    <div class="en">Jozankei View Hotel</div>
+    <div class="thumbs"><img src="img/jozankei-room.jpg" alt="조잔케이 뷰 호텔 내부" loading="lazy"><img src="img/jozankei-onsen.jpg" alt="조잔케이 뷰 호텔 내부" loading="lazy"><img src="img/jozankei-lounge.jpg" alt="조잔케이 뷰 호텔 내부" loading="lazy"><img src="img/jozankei-lobby.jpg" alt="조잔케이 뷰 호텔 내부" loading="lazy"></div>
+    <dl class="kv">
+      <div><dt>주소</dt><dd>2 Chome-111 Jozankeionsenhigashi, Minami Ward, Sapporo, Hokkaido 061-2302</dd></div>
+      <div><dt>전화</dt><dd class="mono">+81 11-598-3339</dd></div>
+      <div><dt>시설</dt><dd>WI-FI · 공중목욕탕 · 온천 · 노천탕 · 자쿠지 · 수영장 · 하우스키핑 · 레스토랑 · 바</dd></div>
+    </dl>
+  </div>
+</article></div>
+</div></section>
+<section id="meal" class="band alt"><div class="wrap">
+  <div class="eyebrow">Dining</div>
+  <h2>식사 정보</h2>
+  <p class="lede">조식은 모두 호텔식입니다. 알레르기나 종교적 식이 제한이 있다면 출발 전 인솔자에게 알려 주세요.</p>
+  <div class="grid g2">
+<div class="mealday">
+  <div class="h"><span class="dn">DAY 1</span><span class="dd">10. 20.(화)</span></div>
+  <div class="mealrow"><div class="meal"><img src="img/meal-air.jpg" alt="기내식" loading="lazy">
+          <div class="lbl">중식</div><div class="nm">기내식</div><div class="ds">대한항공 기내식</div></div><div class="meal"><img src="img/meal-shabu.jpg" alt="샤브샤브" loading="lazy">
+          <div class="lbl">석식</div><div class="nm">샤브샤브</div><div class="ds">취향껏 즐기는 샤브샤브 뷔페</div></div></div>
+</div>
+<div class="mealday">
+  <div class="h"><span class="dn">DAY 2</span><span class="dd">10. 21.(수)</span></div>
+  <div class="mealrow"><div class="meal"><img src="img/meal-dakjjim.jpg" alt="홋카이도 닭찜요리" loading="lazy">
+          <div class="lbl">중식</div><div class="nm">홋카이도 닭찜요리</div><div class="ds">지역 특산 재료로 찐 닭 요리</div></div><div class="meal"><img src="img/meal-yakiniku.jpg" alt="야끼니꾸 정식" loading="lazy">
+          <div class="lbl">석식</div><div class="nm">야끼니꾸 정식</div><div class="ds">홋카이도 숯불 야끼니꾸</div></div></div>
+</div>
+<div class="mealday">
+  <div class="h"><span class="dn">DAY 3</span><span class="dd">10. 22.(목)</span></div>
+  <div class="mealrow"><div class="meal"><img src="img/meal-seafood.jpg" alt="해산물 정식" loading="lazy">
+          <div class="lbl">중식</div><div class="nm">해산물 정식</div><div class="ds">홋카이도 근해 해산물로 차린 정식</div></div><div class="meal"><img src="img/meal-crab.jpg" alt="조잔케이 뷰 호텔 뷔페" loading="lazy">
+          <div class="lbl">석식</div><div class="nm">조잔케이 뷰 호텔 뷔페</div><div class="ds">온천 호텔의 저녁 뷔페</div></div></div>
+</div>
+<div class="mealday">
+  <div class="h"><span class="dn">DAY 4</span><span class="dd">10. 23.(금)</span></div>
+  <div class="mealrow"><div class="meal wide"><div class="duo"><img src="img/meal-ramen.jpg" alt="신 치토세 국제공항 자유식" loading="lazy"><img src="img/meal-donburi.jpg" alt="신 치토세 국제공항 자유식" loading="lazy"></div>
+          <div class="lbl">중식</div><div class="nm">신 치토세 국제공항 자유식</div><div class="ds">1인당 2,000엔 제공 · 라멘, 해산물 덮밥 등</div></div></div>
+</div></div>
+  <hr class="hr">
+  <h3 class="subh">자유시간에 맛볼 만한 홋카이도 음식</h3>
+  <div class="foodgrid"><div class="food"><h4>삿포로 미소 라멘</h4><p>일본의 6종류 라멘 중 3개가 홋카이도에서 탄생했습니다. 하코다테의 시오라멘, 아사히카와의 쇼유라멘, 그리고 삿포로의 미소라멘입니다. 일본 전통 된장을 쓰고 돼지기름을 살려 진하고 걸쭉한 국물이 특징입니다.</p></div><div class="food"><h4>징기스칸</h4><p>양고기와 양파·호박·숙주 등을 화로에 구워 먹는 홋카이도 향토 요리로, 삿포로에서는 야유회나 꽃놀이에 빠지지 않는 음식입니다. 부드러운 램(lamb)과 양 본래의 맛이 강한 머튼(mutton)으로 나뉩니다.</p></div><div class="food"><h4>소바</h4><p>일본 메밀 생산량의 약 40%가 홋카이도산입니다. 쯔유에 찍어 먹는 자루소바(찬 소바)와 따뜻한 국물의 온소바 중에서 고를 수 있습니다.</p></div><div class="food"><h4>게 요리</h4><p>킹크랩·대게·털게를 끓이거나 굽거나 샤부샤부로 먹습니다. 게 나베, 게 조스이(죽), 게 크림 고로케, 게 미소 그라탕 등으로도 즐길 수 있습니다.</p></div><div class="food"><h4>수프카레</h4><p>홋카이도가 발상지인 요리입니다. 고기와 채소를 우린 국물에 향신료를 넣어 수프를 만들고, 감자·단호박·당근·새우 등을 따로 조리해 함께 담아냅니다. 걸쭉한 카레와 달리 국물이 묽습니다.</p></div><div class="food"><h4>홋카이도 밀크 아이스크림</h4><p>삿포로는 유제품으로도 유명합니다. 시내 아이스크림 가게마다 파는 홋카이도 밀크 소프트 아이스크림은 우유 맛이 진하고 질감이 부드럽습니다.</p></div></div>
+</div></section>
+<section id="region" class="band"><div class="wrap">
+  <div class="eyebrow">Hokkaido</div>
+  <h2>연수 지역 정보</h2>
+  <dl class="facts"><div><dt>국명</dt><dd>일본국 (日本国, Japan)</dd></div><div><dt>수도</dt><dd>도쿄 (東京, Tokyo)</dd></div><div><dt>인구</dt><dd>약 1억 2,375만 명</dd></div><div><dt>언어</dt><dd>일본어</dd></div><div><dt>종교</dt><dd>신토, 불교, 기독교</dd></div><div><dt>통화</dt><dd>엔 (円, JPY)</dd></div><div><dt>시차</dt><dd>한국과 동일 (0시간)</dd></div><div><dt>전압</dt><dd>100V · A타입 2핀</dd></div></dl>
+  <h3 class="subh">방문 도시</h3>
+  <div class="grid g2">
+<article class="city"><img src="img/spot-odori.jpg" alt="삿포로" loading="lazy">
+  <div class="c"><div class="tag-city">북해도의 중심지</div>
+  <h4>삿포로 <span>Sapporo</span></h4>
+  <p>홋카이도청이 소재한 홋카이도 최대 도시로, 요코하마·오사카·나고야 다음가는 일본 시정촌 인구 4위이자 도쿄 이북 최대 도시입니다. 인구는 약 197만 명으로, 홋카이도 전체 인구(약 535만 명)의 절반가량이 삿포로와 그 인근에 거주합니다. 냉대 습윤 기후에 속해 연평균기온 9.2℃, 8월 평균기온 22.8℃로 여름이 시원하고 장마와 태풍의 영향이 적습니다. 반면 강수량이 연중 고르게 분포해 겨울 적설량은 세계 대도시 중 최고 수준입니다. 도쿄에 본사를 둔 기업들의 홋카이도 지사가 모여 있는 ‘지점 경제’ 성격이 강하고, 관광업과 IT 산업을 중심으로 서비스업이 발달해 있습니다.</p></div></article>
+<article class="city"><img src="img/spot-canal.jpg" alt="오타루" loading="lazy">
+  <div class="c"><div class="tag-city">아기자기한 공예거리</div>
+  <h4>오타루 <span>Otaru</span></h4>
+  <p>아이누어로 ‘모래사장 사이의 강’을 뜻하는 ‘오타 오르 나이’에서 이름이 유래했습니다. 홋카이도 개척이 시작될 무렵에는 하코다테에 이은 제2의 도시로, 바다 가까이 탄광이 있다는 이점 덕에 빠르게 성장했습니다. 오타루항 무역이 줄고 광산이 사라지면서 지금은 삿포로의 위성도시가 되었지만, 시내를 가로지르는 운하와 구 일본은행 지점 건물 등이 당시의 번성을 보여줍니다. 유리 공예만큼은 지금도 전국적으로 유명합니다.</p></div></article></div>
+  <hr class="hr">
+  <h3 class="subh">일본 홋카이도</h3>
+  <div class="region">
+    <figure><img src="img/cover.jpg" alt="가을의 삿포로 TV타워" loading="lazy">
+      <div style="margin-top:16px"><h3>지리·기후 및 역사적 배경</h3>
+      <p>일본 열도 최북단에 위치한 홋카이도(北海道)는 총면적 약 83,424㎢로 일본 전체 국토의 약 22%를 차지하는 광활한 지역입니다.
+      대한민국 면적의 80%를 웃도는 거대한 대지에 약 510만 명의 인구가 거주하고 있으며, 이 중 약 195만 명이 도청 소재지인 삿포로시에
+      집중되어 있어 고도화된 도시 인프라와 원시적 대자연이 공존합니다. 태평양, 동해, 오호츠크해로 둘러싸인 천혜의 환경과 함께
+      일본에서 유일하게 냉대 습윤 기후대에 속해 사계절의 변화가 뚜렷합니다. 혼슈 지방과 달리 여름 장마(바이우)의 영향이 없어
+      서늘하고 쾌적한 기온을 유지하는 반면, 겨울에는 세계적인 다설(多雪) 지대를 형성합니다. 역사적으로는 선주민 아이누(Ainu)의
+      터전인 ‘에조치(蝦夷地)’로 불리다 1869년 개척사(開拓使) 설치 이후 본격적인 근대화의 길을 걸었습니다. 서구의 선진 농업과
+      토목 기술을 도입해 건설된 격자형 도로망과 붉은 벽돌(아카렌가) 건축물 등은 일본의 전통 고도(古都)들과 구별되는 독자적인
+      계획도시 경관을 보여줍니다.</p></div>
+    </figure>
+    <figure><img src="img/region-field.jpg" alt="홋카이도 구릉의 꽃밭" loading="lazy">
+      <div style="margin-top:16px"><h3>산업·문화 및 미식 환경</h3>
+      <p>광활한 대지와 청정 자연, 그리고 개척의 역사는 홋카이도 특유의 실용적이고 개방적인 도민성(道民性)과 독보적인 미식 문화를
+      형성하는 토대가 되었습니다. 홋카이도는 일본 최대의 식량 공급 기지로서 쌀, 감자, 옥수수 등 고품질 농산물과 함께 전국 우유
+      생산량의 절반 이상을 책임지는 낙농업이 발달하여 유제품 및 제과 가공 산업이 세계적인 수준을 자랑합니다. 또한 한류와 난류가
+      만나는 청정 해역에서 공급되는 게, 연어, 가리비 등 신선한 해산물은 사계절 내내 식탁을 풍요롭게 만듭니다. 여기에 지역 풍토가
+      녹아든 향토 요리도 다양합니다. 전용 철판에 양고기와 채소를 구워 먹는 ‘징기스칸’, 한겨울 추위를 달래기 위해 진한 국물과
+      버터·옥수수를 곁들여 발전한 ‘삿포로 미소 라멘’, 다채로운 향신료와 지역 농산물을 큼직하게 끓여낸 ‘수프 카레’ 등이
+      대표적입니다. 이처럼 웅장한 자연환경, 체계적인 근대 인프라, 그리고 풍요로운 먹거리가 어우러진 홋카이도는 일본 내에서도
+      가장 이색적이고 활력 넘치는 매력을 간직하고 있습니다.</p></div>
+    </figure>
+  </div>
+</div></section>
+<section id="roster" class="band alt"><div class="wrap">
+  <div class="eyebrow">Participants</div>
+  <h2>2차 참가자 명단</h2>
+  <p class="lede">실행과정 · 2026. 10. 20.(화) – 2026. 10. 23.(금)</p>
+  <div class="rosterhead">
+    <div class="stat"><b>11</b><span>참가자</span></div>
+    <div class="stat"><b>3</b><span>인솔</span></div>
+    <div class="stat"><b>14</b><span>총원</span></div>
+    <div class="stat"><b>3박4일</b><span>기간</span></div>
+  </div>
+  <div class="tablewrap"><table>
+    <thead><tr><th class="num">No</th><th>성명</th><th>소속</th><th class="num">연락처</th></tr></thead>
+    <tbody><tr><td class="num">1</td><td>김영식</td><td>항공교육원</td><td class="num">010-2547-6242</td></tr><tr><td class="num">2</td><td>김영준</td><td>통합운영센터</td><td class="num">010-6257-0739</td></tr><tr><td class="num">3</td><td>김종도</td><td>재무처</td><td class="num">010-5399-1848</td></tr><tr><td class="num">4</td><td>김현태</td><td>감사실</td><td class="num">010-3695-5386</td></tr><tr><td class="num">5</td><td>김호연</td><td>공항레이더팀</td><td class="num">010-5438-5480</td></tr><tr><td class="num">6</td><td>박근형</td><td>운항안전팀</td><td class="num">010-5356-2907</td></tr><tr><td class="num">7</td><td>박순배</td><td>공항소방팀</td><td class="num">010-8989-7436</td></tr><tr><td class="num">8</td><td>송인환</td><td>기술연구팀</td><td class="num">010-9416-5498</td></tr><tr><td class="num">9</td><td>신동화</td><td>항공보안처</td><td class="num">010-9014-6399</td></tr><tr><td class="num">10</td><td>이승호</td><td>셔틀트레인팀</td><td class="num">010-5399-4686</td></tr><tr><td class="num">11</td><td>임시호</td><td>안전기획팀</td><td class="num">010-3994-5358</td></tr><tr><td class="num">인솔</td><td>정재근</td><td>교육기획팀</td><td class="num">010-7499-6757</td></tr><tr><td class="num">인솔</td><td>김선우</td><td>한국생산성본부</td><td class="num">010-8846-0602</td></tr><tr><td class="num">인솔</td><td>박진우</td><td>한국생산성본부</td><td class="num">010-4038-2746</td></tr></tbody>
+  </table></div>
+  <div class="safety-note">
+    <b>안전 최우선 연수</b>
+    해외연수에서 가장 중요한 것은 ‘안전’입니다. 그 무엇도 참여자 스스로의 안전의식을 대신할 수는 없습니다.
+    나를 기다리는 가족에 대한 최고의 보답은 연수를 무사히 마치고 안전하게 귀국하는 것입니다.
+  </div>
+</div></section>
+<section id="safety" class="band"><div class="wrap">
+  <div class="eyebrow">Safety</div>
+  <h2>안전 정보 및 비상연락처</h2>
+  <p class="lede">연수 기간 전원 여행자보험에 가입되어 있습니다. 인솔자가 진통제·소화제·지사제·상처연고·밴드·종합감기약 등
+  기본 구급약품을 준비하지만, 개인 처방약은 현지 구입이 어려우므로 반드시 직접 챙겨 주세요.</p>
+  <div class="contacts">
+<div class="ct"><div class="meta"><div class="grp">현지 긴급</div><div class="nm">경찰 신고</div>
+  <div class="no">110</div><div class="sub">일본 전역</div></div>
+  <button class="copy print-hide" data-copy="110" type="button">복사</button></div>
+<div class="ct"><div class="meta"><div class="grp">현지 긴급</div><div class="nm">화재·구급차</div>
+  <div class="no">119</div><div class="sub">일본 전역</div></div>
+  <button class="copy print-hide" data-copy="119" type="button">복사</button></div>
+<div class="ct"><div class="meta"><div class="grp">공관</div><div class="nm">주삿포로 대한민국 총영사관</div>
+  <div class="no">+81-11-218-0288</div><div class="sub">삿포로시 주오구 기타2조 니시12초메 1-4</div></div>
+  <button class="copy print-hide" data-copy="+81-11-218-0288" type="button">복사</button></div>
+<div class="ct"><div class="meta"><div class="grp">공관</div><div class="nm">주일본 대한민국 대사관 — 영사업무</div>
+  <div class="no">+81-3-3455-2601</div></div>
+  <button class="copy print-hide" data-copy="+81-3-3455-2601" type="button">복사</button></div>
+<div class="ct"><div class="meta"><div class="grp">공관</div><div class="nm">주일본 대한민국 대사관 — 대표</div>
+  <div class="no">+81-3-3452-7611</div></div>
+  <button class="copy print-hide" data-copy="+81-3-3452-7611" type="button">복사</button></div>
+<div class="ct"><div class="meta"><div class="grp">공관</div><div class="nm">주일본 대한민국 대사관 — 사건사고</div>
+  <div class="no">+81-70-2153-5454</div><div class="sub">24시간</div></div>
+  <button class="copy print-hide" data-copy="+81-70-2153-5454" type="button">복사</button></div>
+<div class="ct"><div class="meta"><div class="grp">본국</div><div class="nm">외교부 영사콜센터</div>
+  <div class="no">+82-2-3210-0404</div><div class="sub">24시간·연중무휴</div></div>
+  <button class="copy print-hide" data-copy="+82-2-3210-0404" type="button">복사</button></div>
+<div class="ct"><div class="meta"><div class="grp">의료</div><div class="nm">Sapporo Tokushukai Hospital</div>
+  <div class="no">+81-11-890-1110</div><div class="sub">한국어 응대 가능</div></div>
+  <button class="copy print-hide" data-copy="+81-11-890-1110" type="button">복사</button></div>
+<div class="ct"><div class="meta"><div class="grp">의료</div><div class="nm">Otaru General Hospital</div>
+  <div class="no">+81-134-25-1211</div><div class="sub">한국어 응대 가능</div></div>
+  <button class="copy print-hide" data-copy="+81-134-25-1211" type="button">복사</button></div></div>
+  <hr class="hr">
+  <h3 class="subh">상황별 대처 요령</h3>
+  <div class="cases"><details><summary>지진 발생 시 대피요령</summary><ul><li>지진이 일어났을 경우, 크게 진동이 오는 시간은 보통 1~2분 정도입니다.</li><li>성급하게 외부로 빠져나갈 경우 유리창이나 간판·담벼락 등이 무너져 외상을 입을 수 있으니, 비교적 안전한 위치에서 자세를 낮추고 머리 등 신체 주요부위를 보호하며 가급적 계단을 이용합니다.</li><li>엘리베이터 이용 중에 지진이 일어날 경우에는 가까운 층을 눌러 대피합니다.</li></ul></details><details><summary>질병 및 상해사고</summary><ul><li>질병 및 상해사고 발생 시, 반드시 담당자에게 알리고 조치를 취해야 합니다.</li><li>위급한 경우, 환자를 즉시 병원에 후송하여 적절한 치료를 받을 수 있도록 조치합니다.</li><li>조기귀국 조치 후 국내 치료를 진행합니다.</li></ul></details><details><summary>교통사고</summary><ul><li>교통사고 발생 시, 병원에 입원하여 최대한 빨리 응급 치료를 받을 수 있도록 조치합니다. (교통사고 후 병원에 후송된 경우, 병원 내 상주하는 경찰관에게 궁금한 상황을 문의할 수 있음)</li><li>무단횡단으로 인한 교통사고의 경우, 무단 횡단한 사람에게 전적으로 책임이 부과되므로 교통법규 준수가 매우 중요합니다.</li></ul></details><details><summary>여권 분실</summary><ul><li>여권 분실 시, 관할 구역의 경찰서에 가서 분실도난 증명서(Loss Memo)를 받아야 합니다.</li><li>여권 복사본이 있으면 가져가는 것이 일 처리가 빠릅니다. 이때, 도난 및 분실의 어감이 다르므로 절도를 당한 경우 도난으로 신고합니다.</li><li>분실 도난 증명서 발급받은 후 총영사관에 방문하여 여권 수속을 받아야 합니다.</li></ul></details><details><summary>소지품 분실</summary><ul><li>소지품 분실 및 도난 시, 관할 경찰서에 가서 분실도난 증명서를 작성하여 하는데, 이때 도난(Stolen)인지 분실(Lost)인지·구체적인 브랜드/모델명을 언급하는 것이 중요합니다.</li><li>이후, 여행자 보험 약관에 따라 보상 조치를 받을 수 있습니다.</li></ul></details></div>
+  <hr class="hr">
+  <h3 class="subh">연수 중 유의사항</h3>
+  <div class="grid g2"><div class="ck"><h4>기관 방문 시</h4><ul class="plain"><li>단정한 복장 착용</li><li>예정된 일정 및 동선에 따라 방문을 진행하고 개인행동 자제</li><li>현지 관계자·주민에게 불쾌감을 줄 수 있는 행동이나 언행 자제</li><li>현지 기관의 일상 업무를 방해하는 행동 자제 — 개인 잡담이나 사진 촬영으로 업무 방해, 보안구역 무단 진입, 금연구역 흡연 등</li></ul></div><div class="ck"><h4>연수 진행 중</h4><ul class="plain"><li>현지 인솔자(코디네이터)의 안내에 따라 일정 진행</li><li>현지인과의 불필요한 접촉 주의 — 보행 중 충돌 시 먼저 사과</li><li>방문지에서 금지하는 행동 자제 — 금연, 사진촬영 금지, 쓰레기 투기 금지 등</li><li>자유 일정 진행 시 집결 시간과 장소 사전 숙지 및 엄수</li><li>몸이 불편하거나 힘들 때에는 인솔자에게 사전 통지</li></ul></div></div>
+  <div class="flow">
+    <div class="flowlabel">긴급 사안 발생 시 처리 절차</div>
+    <ol><li>사안 발생 (연수단)</li><li>인솔자에게 보고</li><li>현지 처리</li><li>운영사(한국생산성본부) 보고</li></ol>
+  </div>
+</div></section>
+<section id="depart" class="band alt"><div class="wrap">
+  <div class="eyebrow">Departure &amp; Arrival</div>
+  <h2>출입국 안내</h2>
+
+  <div class="twocol">
+    <div class="steps">
+      <h3 class="subh">일본 입국 절차</h3>
+      <ol><li><b>현지 공항 착륙</b><span>기내에 두고 내리는 짐이 없는지 확인한 뒤, ‘Arrival’ 표지판을 따라 이동합니다.</span></li><li><b>입국심사 (Immigration)</b><span>Foreigner 줄에 섭니다. 출입국 신고서와 여권을 함께 제출하거나, Visit Japan Web에 등록했다면 QR코드를 스캔합니다.</span></li><li><b>수하물 수취 (Baggage Claim)</b><span>자신이 타고 온 항공편명을 찾아 가방을 찾습니다.</span></li><li><b>세관 검사</b><span>신고 품목이 있으면 별도 서류를 작성합니다. 입국 시 신고한 물품은 일본 내에서 판매·선물할 수 없습니다.</span></li><li><b>공항 입국장</b><span>인솔자 안내에 따라 전용차량으로 이동합니다.</span></li></ol>
+    </div>
+    <div class="steps">
+      <h3 class="subh">일본 출국 절차</h3>
+      <ol><li><b>공항 도착</b><span>인솔자가 안내하는 집결 장소로 모입니다.</span></li><li><b>항공사 탑승수속</b><span>카운터에 여권과 항공권을 제시하고 탑승권을 받습니다.</span></li><li><b>보안검사</b><span>짐을 X-Ray 검사대에 통과시키고 휴대물품 검사를 받습니다.</span></li><li><b>출국심사</b><span>여권과 탑승권을 제시합니다.</span></li><li><b>탑승 대기</b><span>탑승권에 적힌 탑승구 앞에서 대기합니다.</span></li></ol>
+    </div>
+  </div>
+
+  <div class="callout">
+    <b>Visit Japan Web 사전 등록</b>
+    <ol class="plain-num"><li>Visit Japan Web에 회원가입하고 여권 정보를 등록합니다.</li><li>항공편명과 일본 내 체류지(호텔) 정보를 입력합니다.</li><li>입국심사용·세관신고용 QR코드를 각각 생성합니다.</li><li>현지 공항에서 종이 신고서 대신 QR코드를 제시합니다.</li></ol>
+    <p>등록해 두면 종이 출입국 신고서를 쓰지 않고 QR코드만 보여주면 됩니다. 등록하지 않은 분은 기내에서
+    나눠주는 출입국 신고서를 미리 작성해 두세요.</p>
+  </div>
+
+  <hr class="hr">
+  <h3 class="subh">입국심사 시 질의 참고</h3>
+  <ul class="lede plain"><li>입국심사는 입국목적, 체류기간 등 신원에 대한 확인 목적입니다.</li><li>방문국의 언어를 모를 시 일반적으로 영어로 질의응답을 합니다.</li><li>굳이 문장으로 완벽하게 답하려 노력하기보다는, 질문에 대해 짧고 명확하게 응답합니다.</li><li>평상시 물어보는 사항과 단어도 한정되어 있으므로, 주요 단어를 기준으로 응답합니다.</li></ul>
+  <div class="tablewrap"><table>
+    <thead><tr><th>구분</th><th>주요 질문</th><th>응답</th></tr></thead>
+    <tbody><tr><td class="qk">여권확인</td><td>May I see your passport? / Passport, please</td><td>Here you are. (여기 있습니다)</td></tr><tr><td class="qk">방문목적</td><td>What’s the purpose of your visit?</td><td>For training (연수 차)<br>For business trip (사업 차)</td></tr><tr><td class="qk">출신국가</td><td>Where are you from?</td><td>I’m from South Korea. (한국에서 왔습니다)</td></tr><tr><td class="qk">체류기간</td><td>How long are you going to stay?</td><td>For 4 days. (4일간)</td></tr><tr><td class="qk">숙소</td><td>Where will you be staying?</td><td>At Sapporo Prince Hotel. (삿포로 프린스 호텔)</td></tr><tr><td class="qk">세관물품</td><td>Do you have anything to declare?</td><td>No, nothing. (없습니다)</td></tr><tr><td class="qk">첫 비행</td><td>Is this your first flight?</td><td>Yes, it’s my first flight. (예, 첫 번째 비행입니다)</td></tr><tr><td class="qk">첫 방문</td><td>Is this your first visit to Japan?</td><td>Yes. (맞습니다)<br>No, it’s my second visit. (아니오, 두 번째 방문입니다)</td></tr><tr><td class="qk">귀국편</td><td>Do you have a return ticket to Korea?</td><td>Yes, sure. Here is my ticket. (물론입니다. 여기 제 티켓입니다)</td></tr></tbody>
+  </table></div>
+
+  <hr class="hr">
+  <h3 class="subh">귀국 시 세관 통과</h3>
+  <ul class="lede plain"><li>2023년 5월 1일부터 신고 물품이 없는 여행객은 세관신고서를 작성하지 않아도 됩니다.</li><li>신고 물품이 있으면 전자세관신고(m.customs.go.kr)로 QR코드를 발급받아 모바일 심사대에서 인식시키거나, 기내·공항에서 받은 휴대품 신고서를 작성해 세관 신고구역에 제출합니다.</li><li>면세범위(USD 800)를 넘겨 자진신고하면 관세 30%를 감면받습니다(20만 원 한도).</li><li>자진신고하지 않고 적발되면 가산세 40%가, 상습 미신고는 60%가 부과됩니다.</li></ul>
+
+  <hr class="hr">
+  <h3 class="subh">기내 반입 규정</h3>
+  <div class="twocol">
+    <div class="ck"><h4 class="ok">반입 가능</h4><dl class="deflist"><div><dt>생활도구류</dt><dd>수저, 포크, 손톱깎이, 긴 우산, 감자 칼, 병따개, 족집게, 바늘류</dd></div><div><dt>액체류</dt><dd>위생·욕실 용품, 의약품, 화장품, 치약, 콘택트렌즈 용품 등 100ml 이하 — 내용물이 100ml 이하여도 용기 용량이 100ml를 넘으면 반입 금지</dd></div><div><dt>의료장비·보행 보조도구</dt><dd>체온계, 휴대용 전자의료장비, 지팡이, 목발, 휠체어</dd></div><div><dt>전자장비·건전지</dt><dd>휴대용 건전지, 시계, 계산기, 카메라, 휴대폰, 노트북</dd></div></dl></div>
+    <div class="ck"><h4 class="no">반입 금지</h4><dl class="deflist"><div><dt>인화성 물질</dt><dd>성냥, 라이터, 부탄가스, 휘발유, 페인트, 79% 이상 알코올 음료 — 소형 안전성냥과 휴대용 라이터는 1개에 한해 기내 반입 가능</dd></div><div><dt>방사성·전염성·독성 물질</dt><dd>염소, 표백제, 산화제, 수은</dd></div><div><dt>폭발물류</dt><dd>수류탄, 다이너마이트, 화약류, 연막탄, 폭죽</dd></div></dl></div>
+  </div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>배터리 종류</th><th>기내 수하물</th><th>위탁 수하물</th></tr></thead>
+    <tbody><tr><td>망간·알카라인 건전지</td><td>가능</td><td>가능</td></tr><tr><td>수은 건전지</td><td>가능</td><td>가능</td></tr><tr><td>리튬 이온·폴리머 배터리 160Wh 이하</td><td>가능 (100Wh 이하 5개 / 100Wh 초과 2개)</td><td>기기에 장착된 경우만 가능</td></tr><tr><td>기기와 분리된 보조배터리</td><td>가능 (휴대만)</td><td>불가</td></tr></tbody>
+  </table></div>
+  <p class="savenote">보조배터리는 반드시 기내 수하물로만 반입할 수 있고, 위탁 수하물로는 부칠 수 없습니다.</p>
+</div></section>
+<section id="life" class="band"><div class="wrap">
+  <div class="eyebrow">Local Life</div>
+  <h2>현지 생활 정보</h2>
+  <div class="checkgrid"><div class="ck"><h4>식사 예절</h4><ul class="plain"><li>주로 젓가락을 사용하며, 젓가락을 핥지 않습니다.</li><li>숟가락은 죽·오므라이스·카레·볶음밥처럼 젓가락으로 먹기 어려운 음식에만 씁니다.</li><li>젓가락은 끝을 왼쪽으로 해 받침에 ‘二’자 모양으로 내려놓고, 상대방을 향하게 두지 않습니다.</li><li>음식을 건넬 때 쓰던 젓가락을 그대로 쓰지 않습니다. 새 젓가락이 없으면 자기 젓가락을 거꾸로 잡습니다.</li><li>한 번 집은 음식은 다시 내려놓지 않고, 젓가락을 든 채 망설이지 않습니다.</li><li>그릇과 젓가락을 동시에 들지 않고, 그릇은 식탁에 두고 젓가락으로 먹습니다.</li></ul></div><div class="ck"><h4>일반 문화</h4><ul class="plain"><li>일본은 좌측통행입니다. 에스컬레이터·보도 모두 왼쪽입니다.</li><li>누구의 과실인지와 상관없이 타인과 부딪치면 ‘스미마셍’이라고 합니다.</li><li>지하철은 승객이 모두 내린 뒤에 탑승합니다.</li></ul></div><div class="ck"><h4>의약품</h4><ul class="plain"><li>감기약, 응급약, 피부 연고 등 간단한 의약품은 처방 없이 약국에서 살 수 있습니다.</li><li>그 외에는 의사의 처방전이 필요하므로, 개인 처방약은 반드시 한국에서 챙겨 오세요.</li></ul></div></div>
+
+  <div class="callout money">
+    <b>엔화 사용</b>
+    <div class="twocol">
+      <div><span class="mlabel">지폐</span><div class="mono mval">¥1,000 · ¥2,000 · ¥5,000 · ¥10,000</div></div>
+      <div><span class="mlabel">동전</span><div class="mono mval">¥1 · ¥5 · ¥10 · ¥50 · ¥100 · ¥500</div></div>
+    </div>
+    <p>한국 돈 약 5,000원에 해당하는 500엔까지 동전으로 쓰기 때문에 동전이 금방 쌓입니다. 동전지갑을 하나 챙기면 편합니다. ¥2,000권은 2000년 기념으로 발행돼 2010년에 발행이 중단됐지만 아직 통용됩니다.</p>
+  </div>
+
+  <hr class="hr">
+  <h3 class="subh">유용한 일본어 표현</h3>
+  <div class="phrasegrid"><div class="pcat"><h4>기본 표현</h4><ul><li><div class="ko">실례합니다</div><div class="jp">失礼します</div><div class="rm">시츠레-시마스</div></li><li><div class="ko">부탁합니다</div><div class="jp">お願いします</div><div class="rm">오네가이시마스</div></li><li><div class="ko">저를 좀 도와주세요</div><div class="jp">ちょっと手伝ってください</div><div class="rm">촛토 데츠닷테 구다사이</div></li><li><div class="ko">한국 사람이에요</div><div class="jp">韓国人です</div><div class="rm">간코쿠진데스</div></li><li><div class="ko">괜찮습니다</div><div class="jp">大丈夫です</div><div class="rm">다이조-부데스</div></li><li><div class="ko">아, 죄송해요 / 잠깐만요</div><div class="jp">すみません</div><div class="rm">스미마센</div></li><li><div class="ko">늦어서 죄송합니다</div><div class="jp">遅れて申し訳ありません</div><div class="rm">오쿠레테 모-시와케 아리마센</div></li><li><div class="ko">여러 가지로 신세를 졌습니다</div><div class="jp">いろいろとお世話になりました</div><div class="rm">이로이로토 오세와니 나리마시타</div></li><li><div class="ko">수고 많으셨어요</div><div class="jp">ご苦労様でした</div><div class="rm">고쿠로-사마데시타</div></li><li><div class="ko">먼저 들어가세요</div><div class="jp">どうぞ、お先に</div><div class="rm">도-조 오사키니</div></li><li><div class="ko">이건 뭐예요?</div><div class="jp">これは何ですか</div><div class="rm">고레와 난데스카?</div></li><li><div class="ko">이건 무슨 뜻이에요?</div><div class="jp">これはどういう意味ですか</div><div class="rm">고레와 도-이우 이미데스카?</div></li><li><div class="ko">다시 말씀해 주세요</div><div class="jp">もう一度お願いします</div><div class="rm">모- 이치도 오네가이시마스</div></li><li><div class="ko">화장실은 어디예요?</div><div class="jp">トイレはどこですか</div><div class="rm">토이레와 도코데스카?</div></li></ul></div><div class="pcat"><h4>긴급 상황</h4><ul><li><div class="ko">여기 다친 사람이 있어요! 구급차를 불러 주세요</div><div class="jp">ここにけが人がいます。救急車を呼んでください</div><div class="rm">고코니 게가닌가 이마스! 규-큐-샤오 욘데 구다사이</div></li><li><div class="ko">여기 의사나 간호사 있어요?</div><div class="jp">ここに医師や看護士、いますか</div><div class="rm">고코니 이시야 간고시 이마스카?</div></li><li><div class="ko">경찰을 불러 주세요</div><div class="jp">警察を呼んでください</div><div class="rm">게-사츠오 욘데 구다사이</div></li><li><div class="ko">사람 살려! 살려 주세요!</div><div class="jp">助けて！助けてください</div><div class="rm">다스케테! 다스케테 구다사이</div></li><li><div class="ko">서두르세요</div><div class="jp">急いでください</div><div class="rm">이소이데 구다사이</div></li></ul></div><div class="pcat"><h4>관광</h4><ul><li><div class="ko">사진을 좀 찍어 주시겠어요?</div><div class="jp">写真を撮ってくれますか</div><div class="rm">샤신오 톳테 구레마스카?</div></li><li><div class="ko">이 버튼을 누르면 돼요</div><div class="jp">このボタンを押してください</div><div class="rm">고노 보탄오 오시테 구다사이</div></li><li><div class="ko">여기서 사진을 찍어도 돼요?</div><div class="jp">ここで写真を撮ってもいいですか</div><div class="rm">고코데 샤신오 톳테모 이이데스카?</div></li><li><div class="ko">입구는 어디예요?</div><div class="jp">入口はどこですか</div><div class="rm">이리구치와 도코데스카?</div></li><li><div class="ko">출구는 어디예요?</div><div class="jp">出口はどこですか</div><div class="rm">데구치와 도코데스카?</div></li><li><div class="ko">이해하기 어려워요</div><div class="jp">理解できません</div><div class="rm">리카이 데키마센</div></li></ul></div><div class="pcat"><h4>쇼핑</h4><ul><li><div class="ko">얼마예요?</div><div class="jp">これ、いくらですか</div><div class="rm">고레 이쿠라데스카?</div></li><li><div class="ko">이 가격이 할인 가격이에요?</div><div class="jp">これはセール価格ですか</div><div class="rm">고레와 세-루카카쿠데스카?</div></li><li><div class="ko">가장 인기 있는 건 어떤 거예요?</div><div class="jp">いちばん人気があるのは、どれですか</div><div class="rm">이치반 닌키가 아루노와 도레데스카?</div></li><li><div class="ko">저것 좀 보여 주세요</div><div class="jp">あれ、見せてください</div><div class="rm">아레 미세테 구다사이</div></li><li><div class="ko">이거 입어 봐도 됩니까?</div><div class="jp">これ、着てみてもいいですか</div><div class="rm">고레 기테미테모 이-데스카?</div></li><li><div class="ko">좀 더 작은 치수로 주세요</div><div class="jp">もう少し小さいサイズください</div><div class="rm">모- 스코시 치-사이 사이즈 구다사이</div></li><li><div class="ko">탈의실은 어디예요?</div><div class="jp">試着室はどこですか</div><div class="rm">시차쿠시츠와 도코데스카?</div></li><li><div class="ko">환불해 주시겠어요?</div><div class="jp">返品してもらえますか</div><div class="rm">헨핀시테 모라에마스카?</div></li><li><div class="ko">다음에 다시 올게요</div><div class="jp">次にまた来ます</div><div class="rm">츠기니 마타 기마스</div></li></ul></div><div class="pcat"><h4>식당</h4><ul><li><div class="ko">여기 주문 받아 주세요</div><div class="jp">注文お願いします</div><div class="rm">추-몬 오네가이시마스</div></li><li><div class="ko">이거 하나 더 주세요</div><div class="jp">これ、もうひとつください</div><div class="rm">고레 모- 히토츠 구다사이</div></li><li><div class="ko">좀 있다가 주문할게요</div><div class="jp">少ししてから注文します</div><div class="rm">스코시 시테카라 추-몬시마스</div></li><li><div class="ko">이 집에서 가장 인기 있는 메뉴는 뭐예요?</div><div class="jp">この店でいちばん人気のあるメニューは何ですか</div><div class="rm">고노 미세데 이치반 닌키노 아루 메뉴-와 난데스카?</div></li><li><div class="ko">포장해 주세요</div><div class="jp">テイクアウトお願いします</div><div class="rm">테이쿠아우토 오네가이시마스</div></li><li><div class="ko">냅킨을 주세요</div><div class="jp">ナプキンください</div><div class="rm">나푸킨 구다사이</div></li></ul></div></div>
+</div></section>
+<section id="check" class="band"><div class="wrap">
+  <div class="eyebrow">Checklist</div>
+  <h2>출발 전 준비물</h2>
+  <p class="lede">체크 상태와 메모는 이 기기의 브라우저에만 저장됩니다. 다른 사람에게는 보이지 않습니다.</p>
+  <div class="checkgrid"><div class="ck"><h4>항공·서류</h4><label><input type="checkbox" id="ck-0-0"><span><b>여권</b><i>잔여 유효기간 6개월 이상 확인 · 여권번호는 따로 메모</i></span></label><label><input type="checkbox" id="ck-0-1"><span><b>여권 사진 2장</b><i>분실에 대비해 준비</i></span></label><label><input type="checkbox" id="ck-0-2"><span><b>여권 사본</b><i>원본과 분리해 보관</i></span></label><label><input type="checkbox" id="ck-0-3"><span><b>전자항공권(e-티켓)</b><i>휴대폰에 저장 또는 출력</i></span></label><label><input type="checkbox" id="ck-0-4"><span><b>여행자보험 가입 확인서</b><i>전원 가입 완료 · 사본 지참 권장</i></span></label><label><input type="checkbox" id="ck-0-5"><span><b>Visit Japan Web QR</b><i>출발 전 미리 등록하면 입국이 빠릅니다</i></span></label></div><div class="ck"><h4>경비</h4><label><input type="checkbox" id="ck-1-0"><span><b>엔화 환전</b><i>공항 자유 중식 2,000엔은 별도 제공</i></span></label><label><input type="checkbox" id="ck-1-1"><span><b>동전지갑</b><i>500엔까지 동전이라 금방 쌓입니다</i></span></label><label><input type="checkbox" id="ck-1-2"><span><b>신용카드</b><i>해외 사용 가능한 비자 또는 마스터카드</i></span></label></div><div class="ck"><h4>가방</h4><label><input type="checkbox" id="ck-2-0"><span><b>큰 가방</b><i>필수품 외에는 호텔에 두고 다닐 수 있게 분리</i></span></label><label><input type="checkbox" id="ck-2-1"><span><b>작은 가방</b><i>이동 중 꼭 필요한 소지품용</i></span></label><label><input type="checkbox" id="ck-2-2"><span><b>비닐팩</b><i>젖은 옷, 입은 옷 분류에 유용</i></span></label></div><div class="ck"><h4>의류 — 10월 하순 삿포로</h4><label><input type="checkbox" id="ck-3-0"><span><b>얇은 패딩 또는 바람막이</b><i>낮 13~16℃ · 아침 4~7℃</i></span></label><label><input type="checkbox" id="ck-3-1"><span><b>편한 운동화</b><i>걷는 일정이 많습니다</i></span></label><label><input type="checkbox" id="ck-3-2"><span><b>우산 또는 방수 자켓</b><i>작고 가벼운 것으로</i></span></label><label><input type="checkbox" id="ck-3-3"><span><b>기관 방문용 단정한 복장</b><i>공식 방문 2회</i></span></label><label><input type="checkbox" id="ck-3-4"><span><b>온천용 개인 수건 · 실내복</b><i>두 호텔 모두 대욕장·온천 있음</i></span></label></div><div class="ck"><h4>편의·위생</h4><label><input type="checkbox" id="ck-4-0"><span><b>휴대폰 충전기 · 보조배터리</b><i>보조배터리는 기내 수하물로만</i></span></label><label><input type="checkbox" id="ck-4-1"><span><b>일본용 어댑터</b><i>100V · A타입 2핀</i></span></label><label><input type="checkbox" id="ck-4-2"><span><b>로밍 또는 현지 eSIM</b><i>출국 전 신청</i></span></label><label><input type="checkbox" id="ck-4-3"><span><b>손목시계</b><i>로밍하지 않으면 휴대폰 시간이 안 맞습니다</i></span></label><label><input type="checkbox" id="ck-4-4"><span><b>세면도구 · 기초 화장품</b><i>호텔 비치 · 용기에 덜거나 샘플로</i></span></label><label><input type="checkbox" id="ck-4-5"><span><b>필기구 및 수첩</b><i>공식 방문 기록용</i></span></label></div><div class="ck"><h4>의약품</h4><label><input type="checkbox" id="ck-5-0"><span><b>개인 상비약</b><i>두통약, 멀미약, 감기약, 지사제, 소화제, 외상약·밴드</i></span></label><label><input type="checkbox" id="ck-5-1"><span><b>개인 처방약</b><i>현지 구입이 어려우니 반드시 직접 지참</i></span></label></div></div>
+  <div class="memo">
+    <label for="memo">개인 메모 — 좌석번호, 룸메이트, 환전 금액 등</label>
+    <textarea id="memo" placeholder="예) 좌석 32A / 룸메이트 ○○○ / 엔화 30,000엔 환전 완료"></textarea>
+    <div class="savenote" id="savenote">입력하면 자동으로 저장됩니다.</div>
+  </div>
+</div></section>
+<section id="printplan" class="band alt"><div class="wrap">
+  <div class="eyebrow">One page</div>
+  <h2>전체 일정표</h2>
+  <p class="lede">A4 한 장 요약본입니다. 브라우저 인쇄 기능을 쓰면 이 표만 깔끔하게 출력됩니다.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th class="num">일자</th><th>세부 일정</th><th>중식 / 석식</th><th>숙박</th></tr></thead>
+    <tbody><tr>
+  <td class="num"><b>1일차</b><br>10. 20.(화)</td>
+  <td style="font-size:12px">인천국제공항 제2여객터미널 집결<br><b class="mono">10:35</b> ICN 인천국제공항 출발<br><b class="mono">14:00</b> 신 치토세 국제공항(CTS) 도착 및 입국수속<br><b class="mono">15:00</b> 인프라 탐방 — 시로이 고이비토 파크<br><b class="mono">18:00</b> 석식<br>호텔 투숙 및 휴식</td>
+  <td style="white-space:nowrap;font-size:12px">기내식<br>샤브샤브</td>
+  <td style="white-space:nowrap;font-size:12px">삿포로 프린스 호텔</td></tr><tr>
+  <td class="num"><b>2일차</b><br>10. 21.(수)</td>
+  <td style="font-size:12px"><b class="mono">07:30</b> 조식<br><b class="mono">09:00</b> 공식 방문 ① 주식회사 홋카이도 에코 리사이클 시스템즈 공장<br><b class="mono">12:00</b> 중식<br><b class="mono">13:00</b> 인프라 탐방 — 노보리베쓰 다테 지다이무라<br><b class="mono">18:00</b> 석식<br>호텔 투숙 및 휴식</td>
+  <td style="white-space:nowrap;font-size:12px">홋카이도 닭찜요리<br>야끼니꾸 정식</td>
+  <td style="white-space:nowrap;font-size:12px">삿포로 프린스 호텔</td></tr><tr>
+  <td class="num"><b>3일차</b><br>10. 22.(목)</td>
+  <td style="font-size:12px"><b class="mono">07:30</b> 조식<br><b class="mono">09:00</b> 공식 방문 ② 기린맥주 주식회사 홋카이도 치토세 공장<br><b class="mono">12:00</b> 중식<br><b class="mono">13:00</b> 인프라 탐방 — 오타루 운하, 오르골당, 사카이마치도리 상점가 등<br><b class="mono">16:00</b> 온천욕 체험 — 조잔케이 뷰 호텔 온천<br><b class="mono">18:00</b> 석식<br>호텔 투숙 및 휴식</td>
+  <td style="white-space:nowrap;font-size:12px">해산물 정식<br>조잔케이 뷰 호텔 뷔페</td>
+  <td style="white-space:nowrap;font-size:12px">조잔케이 뷰 호텔</td></tr><tr>
+  <td class="num"><b>4일차</b><br>10. 23.(금)</td>
+  <td style="font-size:12px"><b class="mono">07:30</b> 조식<br><b class="mono">09:00</b> 휴식(온천) 및 체크아웃<br><b class="mono">10:00</b> 공항 이동 및 구경<br><b class="mono">12:00</b> 중식<br><b class="mono">14:50</b> 신 치토세 국제공항(CTS) 출발<br><b class="mono">17:55</b> ICN 인천국제공항 도착 후 해산</td>
+  <td style="white-space:nowrap;font-size:12px">공항 자유식<br>—</td>
+  <td style="white-space:nowrap;font-size:12px">—</td></tr></tbody>
+  </table></div>
+  <p class="savenote">항공 KE 765 (10:35 ICN → CTS) / KE 766 (14:50 CTS → 17:55 ICN) ·
+  전 구간 전용차량 이동 · 현지 사정에 따라 일정이 조정될 수 있습니다.</p>
+</div></section>
+<footer><div class="wrap f">
+  <div class="logos">
+    <img src="img/logo-kpc.png" alt="한국생산성본부">
+    <img src="img/logo-iia.png" alt="인천국제공항공사">
+  </div>
+  <p>2026년 인천국제공항공사 생애주기 교육(이음·채움) 국외연수 · 2차 실행과정<br>
+  주관 한국생산성본부 · 문의는 인솔자에게 연락해 주세요.</p>
+</div></footer>
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('.daytab'));
+  tabs.forEach(function(t){
+    t.addEventListener('click',function(){
+      tabs.forEach(function(o){
+        var on=o===t;
+        o.setAttribute('aria-selected',on?'true':'false');
+        document.getElementById('dp'+o.dataset.day).hidden=!on;
+      });
+    });
+  });
+
+  var KEY='iia-hokkaido-r2';
+  function get(k){try{return localStorage.getItem(k)}catch(e){return null}}
+  function set(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+
+  [].forEach.call(document.querySelectorAll('.ck input'),function(cb){
+    var k=KEY+'.'+cb.id;
+    if(get(k)==='1')cb.checked=true;
+    cb.addEventListener('change',function(){set(k,cb.checked?'1':'0')});
+  });
+
+  var memo=document.getElementById('memo'),note=document.getElementById('savenote'),tmr;
+  if(memo){
+    var saved=get(KEY+'.memo'); if(saved)memo.value=saved;
+    memo.addEventListener('input',function(){
+      clearTimeout(tmr);
+      tmr=setTimeout(function(){set(KEY+'.memo',memo.value);
+        note.textContent='저장되었습니다.';
+        setTimeout(function(){note.textContent='입력하면 자동으로 저장됩니다.'},1600);},400);
+    });
+  }
+
+  [].forEach.call(document.querySelectorAll('.copy'),function(b){
+    b.addEventListener('click',function(){
+      var v=b.dataset.copy;
+      function done(){b.textContent='복사됨';b.classList.add('ok');
+        setTimeout(function(){b.textContent='복사';b.classList.remove('ok')},1400);}
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        navigator.clipboard.writeText(v).then(done,function(){sel()});
+      }else{sel()}
+      function sel(){
+        var n=b.parentNode.querySelector('.no');
+        if(!n)return;
+        var rg=document.createRange();rg.selectNodeContents(n);
+        var s=window.getSelection();s.removeAllRanges();s.addRange(rg);
+        b.textContent='선택됨';setTimeout(function(){b.textContent='복사'},1400);
+      }
+    });
+  });
+
+  var links=[].slice.call(document.querySelectorAll('.navscroll a'));
+  var secs=links.map(function(a){return document.querySelector(a.getAttribute('href'))});
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(en){
+      if(!en.isIntersecting)return;
+      var i=secs.indexOf(en.target);
+      links.forEach(function(a,j){a.classList.toggle('on',i===j)});
+    });
+  },{rootMargin:'-55px 0px -70% 0px'});
+  secs.forEach(function(s){if(s)io.observe(s)});
+})();
+</script>
+</body>
+</html>

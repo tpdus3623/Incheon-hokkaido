@@ -183,11 +183,19 @@ td.num,th.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-sp
   border-radius:999px;padding:3px 10px;background:var(--bg)}
 
 /* ── spot grid ── */
-.grid{display:grid;gap:16px;margin-top:26px}
+.grid{display:grid;gap:16px;margin-top:26px;align-items:start}
 .g4{grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
 .g2{grid-template-columns:repeat(auto-fit,minmax(310px,1fr))}
 .spot{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
 .spot img{aspect-ratio:4/3;object-fit:cover;width:100%}
+.spot .noimg{aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;
+  padding:14px;text-align:center;
+  background:linear-gradient(135deg,var(--mist) 0%,var(--mist-2) 100%);
+  border-bottom:1px solid var(--line)}
+.spot .noimg span{font-family:var(--serif);font-size:17px;font-weight:700;color:var(--brand-deep);
+  line-height:1.4;text-wrap:balance}
+.spot.night{background:var(--bg);border-style:dashed}
+.spot.night .day{color:var(--amber)}
 .spot .c{padding:13px 14px 15px}
 .spot .day{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--brand);font-weight:600}
 .spot h4{font-size:15px;margin-top:4px}
@@ -501,9 +509,9 @@ ul.plain li,ol.plain-num li{margin-bottom:6px;font-size:13.5px;line-height:1.75;
   <div class="dayhead">
     <h3>4일차 · 10. 30.(금)</h3>
     <div class="daytheme">귀국</div>
-    <div class="route">조잔케이 → 신 치토세 → 인천 &nbsp;|&nbsp; 숙박 —</div>
+    <div class="route">조잔케이 → 타키노레이엔 → 신 치토세 → 인천 &nbsp;|&nbsp; 숙박 —</div>
   </div>
-  <ol class="tl"><li class="meal"><span class="t">07:30</span><span class="ttl">조식</span><div class="d">호텔 뷔페</div></li><li class=""><span class="t">09:00</span><span class="ttl">휴식(온천) 및 체크아웃</span></li><li class=""><span class="t">10:00</span><span class="ttl">공항 이동 및 구경</span></li><li class="meal"><span class="t">12:00</span><span class="ttl">중식</span><div class="d">공항 자유식 · 1인당 2,000엔 제공</div></li><li class="flight"><span class="t">14:50</span><span class="ttl">신 치토세 국제공항(CTS) 출발</span><div class="d">대한항공 KE 766 · 약 3시간 5분 소요</div></li><li class="flight"><span class="t">17:55</span><span class="ttl">ICN 인천국제공항 도착 후 해산</span></li></ol>
+  <ol class="tl"><li class="meal"><span class="t">07:30</span><span class="ttl">조식</span><div class="d">호텔 뷔페</div></li><li class=""><span class="t">10:00</span><span class="ttl">체크아웃 후 전용차량 이동</span></li><li class="visit"><span class="ttl"><span class="tag visit">인프라 탐방</span>인프라 탐방 — 마코마나이 타키노레이엔</span><div class="d">약 1시간 관람 · 안도 다다오의 ‘아타마다이부쓰(머리대불)’</div></li><li class=""><span class="ttl">공항으로 이동</span><div class="d">약 40~50분 소요</div></li><li class="flight"><span class="t">12:20</span><span class="ttl">신 치토세 국제공항 도착 및 출국수속</span></li><li class="meal"><span class="ttl">중식</span><div class="d">공항 자유식 · 1인당 2,000엔 제공</div></li><li class="flight"><span class="t">14:50</span><span class="ttl">신 치토세 국제공항 출발</span><div class="d">대한항공 KE 766 · 약 3시간 5분 소요</div></li><li class="flight"><span class="t">17:55</span><span class="ttl">ICN 인천국제공항 도착 후 해산</span></li></ol>
 </div>
 </div></section>
 <section id="official" class="band"><div class="wrap">
@@ -537,24 +545,17 @@ ul.plain li,ol.plain-num li{margin-bottom:6px;font-size:13.5px;line-height:1.75;
 <section id="spots" class="band alt"><div class="wrap">
   <div class="eyebrow">Field Visit</div>
   <h2>인프라 탐방</h2>
-  <p class="lede">개척기 근대 건축과 지역 산업이 남긴 시설을 중심으로 둘러봅니다.</p>
-  <div class="grid g4">
-<article class="spot"><img src="img/spot-shiroi.jpg" alt="시로이 고이비토 파크" loading="lazy">
-  <div class="c"><div class="day">1일차</div><h4>시로이 고이비토 파크</h4><p>홋카이도 대표 제과 브랜드의 제조 공정과 테마 정원을 결합한 체험형 복합 문화 시설</p></div></article>
-<article class="spot"><img src="img/spot-noboribetsu.jpg" alt="노보리베쓰 다테 지다이무라" loading="lazy">
-  <div class="c"><div class="day">2일차</div><h4>노보리베쓰 다테 지다이무라</h4><p>에도 시대의 무가 저택과 거리 풍경, 닌자 문화를 정밀하게 재현한 역사 테마파크</p></div></article>
-<article class="spot"><img src="img/spot-orgel.jpg" alt="오타루 오르골당 본관" loading="lazy">
-  <div class="c"><div class="day">3일차</div><h4>오타루 오르골당 본관</h4><p>1912년에 건립된 붉은 벽돌 목조 건축물에 전 세계 오르골 수만 점을 갖춘 전시·판매장</p></div></article>
-<article class="spot"><img src="img/spot-canal.jpg" alt="오타루 운하" loading="lazy">
-  <div class="c"><div class="day">3일차</div><h4>오타루 운하</h4><p>20세기 초 물류용 수로를 철거하지 않고 수변 산책로와 석조 창고군으로 재생한 대표 수변 명소</p></div></article>
-<article class="spot"><img src="img/spot-sakaimachi.jpg" alt="오타루 사카이마치도리 상점가" loading="lazy">
-  <div class="c"><div class="day">3일차</div><h4>오타루 사카이마치도리 상점가</h4><p>근대 은행과 석조 창고를 개조한 유리 공예점, 공방, 디저트 매장이 밀집한 역사 보존 상권</p></div></article>
-<article class="spot"><img src="img/spot-akarenga.jpg" alt="홋카이도청 구 본청사" loading="lazy">
-  <div class="c"><div class="day">삿포로 시내</div><h4>홋카이도청 구 본청사</h4><p>1888년 미국식 네오바로크 양식으로 완공된 붉은 벽돌 외관의 홋카이도 개척 행정 상징 건축물</p></div></article>
-<article class="spot"><img src="img/spot-odori.jpg" alt="오도리 공원" loading="lazy">
-  <div class="c"><div class="day">삿포로 시내</div><h4>오도리 공원</h4><p>삿포로 중심부를 동서로 가로지르며 분수와 녹지, 도심 조경이 정비된 대규모 공공 공원</p></div></article>
-<article class="spot"><img src="img/spot-clock.jpg" alt="삿포로시 시계탑" loading="lazy">
-  <div class="c"><div class="day">삿포로 시내</div><h4>삿포로시 시계탑</h4><p>1878년 건립되어 현재까지 종소리를 울리는 현존 최고(最古)의 목조 서양식 탑 시계 건축물</p></div></article></div>
+  <p class="lede">일정에 포함된 방문지입니다. 개척기 근대 건축과 지역 산업이 남긴 시설을 중심으로 둘러봅니다.</p>
+  <div class="grid g4"><article class="spot"><img src="img/spot-shiroi.jpg" alt="시로이 고이비토 파크" loading="lazy"><div class="c"><div class="day">1일차</div><h4>시로이 고이비토 파크</h4><p>홋카이도 대표 제과 브랜드의 제조 공정과 테마 정원을 결합한 체험형 복합 문화 시설</p></div></article><article class="spot"><img src="img/spot-noboribetsu.jpg" alt="노보리베쓰 다테 지다이무라" loading="lazy"><div class="c"><div class="day">2일차</div><h4>노보리베쓰 다테 지다이무라</h4><p>에도 시대의 무가 저택과 거리 풍경, 닌자 문화를 정밀하게 재현한 역사 테마파크</p></div></article><article class="spot"><img src="img/spot-orgel.jpg" alt="오타루 오르골당 본관" loading="lazy"><div class="c"><div class="day">3일차</div><h4>오타루 오르골당 본관</h4><p>1912년에 건립된 붉은 벽돌 목조 건축물에 전 세계 오르골 수만 점을 갖춘 전시·판매장</p></div></article><article class="spot"><img src="img/spot-canal.jpg" alt="오타루 운하" loading="lazy"><div class="c"><div class="day">3일차</div><h4>오타루 운하</h4><p>20세기 초 물류용 수로를 철거하지 않고 수변 산책로와 석조 창고군으로 재생한 대표 수변 명소</p></div></article><article class="spot"><img src="img/spot-sakaimachi.jpg" alt="오타루 사카이마치도리 상점가" loading="lazy"><div class="c"><div class="day">3일차</div><h4>오타루 사카이마치도리 상점가</h4><p>근대 은행과 석조 창고를 개조한 유리 공예점, 공방, 디저트 매장이 밀집한 역사 보존 상권</p></div></article><article class="spot"><img src="img/spot-takino.jpg" alt="마코마나이 타키노레이엔" loading="lazy"><div class="c"><div class="day">4일차</div><h4>마코마나이 타키노레이엔</h4><p>안도 다다오가 설계한 ‘아타마다이부쓰(머리대불)’. 높이 13.5m 대불을 라벤더 15만 주의 인공 언덕이 둘러싸, 긴 진입 통로 끝에서 머리만 드러납니다. 모아이상군·스톤헨지 조형물도 있습니다.</p></div></article></div>
+
+  <hr class="hr">
+  <h3 class="subh">삿포로 시내(숙소 주변) 가볼 만한 곳</h3>
+  <p class="lede">아래 세 곳은 <b>일정에 포함되어 있지 않습니다.</b> 다만 1·2일차 숙소인 삿포로 프린스 호텔에서
+  걸어갈 수 있는 거리라, 저녁 식사 후 자유시간에 산책 삼아 다녀오실 수 있습니다. 세 곳 모두 야간 조명이 있고
+  바깥에서 보는 것은 24시간 가능합니다.</p>
+  <div class="grid g4"><article class="spot night"><img src="img/spot-odori.jpg" alt="오도리 공원" loading="lazy"><div class="c"><div class="day">도보 약 5분</div><h4>오도리 공원</h4><p>삿포로 중심부를 동서로 가로지르는 대규모 공공 공원. 호텔에서 가장 가깝고, 밤에는 TV타워 조명이 켜집니다.</p></div></article><article class="spot night"><img src="img/spot-akarenga.jpg" alt="홋카이도청 구 본청사" loading="lazy"><div class="c"><div class="day">도보 약 15분</div><h4>홋카이도청 구 본청사</h4><p>1888년 미국식 네오바로크 양식으로 완공된 붉은 벽돌 건축물. 야간에는 외관 조명이 들어옵니다.</p></div></article><article class="spot night"><img src="img/spot-clock.jpg" alt="삿포로시 시계탑" loading="lazy"><div class="c"><div class="day">도보 약 20분</div><h4>삿포로시 시계탑</h4><p>1878년 건립되어 현재까지 종소리를 울리는 현존 최고(最古)의 목조 서양식 탑 시계 건축물</p></div></article></div>
+  <p class="savenote">도보 시간은 삿포로 프린스 호텔 기준 대략적인 값입니다. 야간 외출 시에는 인솔자에게
+  알려 주시고, 다음 날 일정에 지장이 없도록 해 주세요.</p>
 </div></section>
 <section id="hotel" class="band"><div class="wrap">
   <div class="eyebrow">Accommodation</div>
@@ -822,7 +823,7 @@ ul.plain li,ol.plain-num li{margin-bottom:6px;font-size:13.5px;line-height:1.75;
   <td style="white-space:nowrap;font-size:12px">해산물 정식<br>조잔케이 뷰 호텔 뷔페</td>
   <td style="white-space:nowrap;font-size:12px">조잔케이 뷰 호텔</td></tr><tr>
   <td class="num"><b>4일차</b><br>10. 30.(금)</td>
-  <td style="font-size:12px"><b class="mono">07:30</b> 조식<br><b class="mono">09:00</b> 휴식(온천) 및 체크아웃<br><b class="mono">10:00</b> 공항 이동 및 구경<br><b class="mono">12:00</b> 중식<br><b class="mono">14:50</b> 신 치토세 국제공항(CTS) 출발<br><b class="mono">17:55</b> ICN 인천국제공항 도착 후 해산</td>
+  <td style="font-size:12px"><b class="mono">07:30</b> 조식<br><b class="mono">10:00</b> 체크아웃 후 전용차량 이동<br>인프라 탐방 — 마코마나이 타키노레이엔<br>공항으로 이동<br><b class="mono">12:20</b> 신 치토세 국제공항 도착 및 출국수속<br>중식<br><b class="mono">14:50</b> 신 치토세 국제공항 출발<br><b class="mono">17:55</b> ICN 인천국제공항 도착 후 해산</td>
   <td style="white-space:nowrap;font-size:12px">공항 자유식<br>—</td>
   <td style="white-space:nowrap;font-size:12px">—</td></tr></tbody>
   </table></div>
